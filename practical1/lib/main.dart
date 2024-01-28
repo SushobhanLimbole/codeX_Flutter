@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practical1/codeX_app.dart';
 // import 'package:practical1/firstpage.dart';
 // import 'package:practical1/secondpage.dart';
 import 'package:practical1/thirdpage.dart';
@@ -12,6 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Flutter Demo', home: ScreenThree());
+    return MaterialApp(
+      title: 'Flutter Demo',
+      home: ScreenFour(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

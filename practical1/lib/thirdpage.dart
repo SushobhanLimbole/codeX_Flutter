@@ -13,6 +13,7 @@ class ScreenThree extends StatelessWidget {
         height: 400,
         width: 400,
         color: const Color.fromARGB(255, 250, 2, 2),
+        margin: EdgeInsets.only(left: 15),
         child: Center(
           child: Container(
             height: 200,
