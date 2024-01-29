@@ -47,9 +47,9 @@ class ScreenFour extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(left: 40),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
@@ -68,11 +68,10 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -90,11 +89,10 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -112,11 +110,11 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50, right: 50),
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(right: 40),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -155,9 +153,9 @@ class ScreenFour extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(left: 40),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -175,11 +173,10 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -197,11 +194,10 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -219,11 +215,11 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50, right: 50),
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(right: 40),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -263,9 +259,9 @@ class ScreenFour extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(left: 40),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -283,11 +279,10 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -305,11 +300,10 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -327,11 +321,11 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50, right: 50),
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(right: 40),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -370,9 +364,9 @@ class ScreenFour extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(left: 40),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -390,11 +384,10 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50),
+                      height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -412,11 +405,53 @@ class ScreenFour extends StatelessWidget {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 30)),
                     Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.only(left: 50, right: 50),
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Colors.black,
+                              width: 1,
+                              style: BorderStyle.solid),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color.fromARGB(156, 10, 10, 10),
+                                offset: Offset(2, 1),
+                                blurRadius: 2),
+                          ],
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: AssetImage("images/git-img.png"),
+                            fit: BoxFit.cover,
+                          )),
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 30)),
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Colors.black,
+                              width: 1,
+                              style: BorderStyle.solid),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color.fromARGB(156, 10, 10, 10),
+                                offset: Offset(2, 1),
+                                blurRadius: 2),
+                          ],
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: AssetImage("images/github.png"),
+                            fit: BoxFit.cover,
+                          )),
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 30)),
+                    Container(
+                      height: 120,
+                      width: 120,
+                      margin: EdgeInsets.only(right: 40),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: Colors.black,
@@ -447,6 +482,9 @@ class ScreenFour extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        height: 60,
       ),
     );
   }
