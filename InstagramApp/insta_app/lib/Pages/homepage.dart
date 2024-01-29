@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        left: 20,
+                        left: 10,
                       ),
                       child: Column(
                         children: [
@@ -105,7 +105,7 @@ class HomePage extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        left: 20,
+                        left: 10,
                       ),
                       child: Column(
                         children: [
@@ -142,7 +142,7 @@ class HomePage extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        left: 20,
+                        left: 10,
                       ),
                       child: Column(
                         children: [
@@ -170,7 +170,7 @@ class HomePage extends StatelessWidget {
                             height: 18,
                             margin: EdgeInsets.only(top: 4),
                             child: Text(
-                              "_vedant_kumbhar",
+                              "_vedant_kumb..",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 12),
                             ),
@@ -180,7 +180,7 @@ class HomePage extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        left: 20,
+                        left: 10,
                       ),
                       child: Column(
                         children: [
@@ -207,7 +207,7 @@ class HomePage extends StatelessWidget {
                             height: 18,
                             margin: EdgeInsets.only(top: 4),
                             child: Text(
-                              "pavan_mali_0577",
+                              "pavan_mali_.",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 12),
                             ),
@@ -217,7 +217,7 @@ class HomePage extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        left: 20,
+                        left: 10,
                         right: 20,
                       ),
                       child: Column(
@@ -290,7 +290,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 174)),
+                    Padding(padding: EdgeInsets.only(left: 156)),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -324,7 +324,7 @@ class HomePage extends StatelessWidget {
                       Icons.send_sharp,
                       color: Colors.white,
                     ),
-                    Padding(padding: EdgeInsets.only(left: 240)),
+                    Padding(padding: EdgeInsets.only(left: 230)),
                     Icon(
                       Icons.bookmark_border_sharp,
                       color: Colors.white,
@@ -473,7 +473,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 174)),
+                    Padding(padding: EdgeInsets.only(left: 176)),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -507,7 +507,7 @@ class HomePage extends StatelessWidget {
                       Icons.send_sharp,
                       color: Colors.white,
                     ),
-                    Padding(padding: EdgeInsets.only(left: 240)),
+                    Padding(padding: EdgeInsets.only(left: 230)),
                     Icon(
                       Icons.bookmark_border_sharp,
                       color: Colors.white,
@@ -638,7 +638,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 174)),
+                    Padding(padding: EdgeInsets.only(left: 162)),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -672,7 +672,7 @@ class HomePage extends StatelessWidget {
                       Icons.send_sharp,
                       color: Colors.white,
                     ),
-                    Padding(padding: EdgeInsets.only(left: 240)),
+                    Padding(padding: EdgeInsets.only(left: 230)),
                     Icon(
                       Icons.bookmark_border_sharp,
                       color: Colors.white,
@@ -800,7 +800,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 174)),
+                    Padding(padding: EdgeInsets.only(left: 230)),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -834,7 +834,7 @@ class HomePage extends StatelessWidget {
                       Icons.send_sharp,
                       color: Colors.white,
                     ),
-                    Padding(padding: EdgeInsets.only(left: 240)),
+                    Padding(padding: EdgeInsets.only(left: 230)),
                     Icon(
                       Icons.bookmark_border_sharp,
                       color: Colors.white,
@@ -871,7 +871,7 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "An ermine is a small, white weasel that is found...",
+                            "An ermine is a small, white weasel that is ....",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
@@ -944,7 +944,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 174)),
+                    Padding(padding: EdgeInsets.only(left: 161)),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -978,7 +978,7 @@ class HomePage extends StatelessWidget {
                       Icons.send_sharp,
                       color: Colors.white,
                     ),
-                    Padding(padding: EdgeInsets.only(left: 240)),
+                    Padding(padding: EdgeInsets.only(left: 230)),
                     Icon(
                       Icons.bookmark_border_sharp,
                       color: Colors.white,
