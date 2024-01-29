@@ -32,7 +32,6 @@ class HomePage extends StatelessWidget {
                         Container(
                           height: 76,
                           width: 76,
-                          //color: Color.fromARGB(229, 225, 41, 143),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 width: 3,
@@ -44,15 +43,10 @@ class HomePage extends StatelessWidget {
                                 border:
                                     Border.all(width: 1.5, color: Colors.black),
                                 borderRadius: BorderRadius.circular(38),
-                                color: Color.fromARGB(255, 197, 22, 194)),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(38),
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Ferrari/F8-Tributo/7945/1598599471404/front-left-side-47.jpg"),
-                                      fit: BoxFit.cover)),
-                            ),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://stimg.cardekho.com/images/carexteriorimages/930x620/Ferrari/F8-Tributo/7945/1598599471404/front-left-side-47.jpg"),
+                                    fit: BoxFit.cover)),
                           ),
                         ),
                         Container(
