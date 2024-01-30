@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool fav1 = false;
+  bool fav2 = false;
+  bool fav3 = false;
+  bool fav4 = false;
+  bool fav5 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +50,17 @@ class HomePage extends StatelessWidget {
                             width: 76,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 3,
-                                  color: Color.fromARGB(255, 252, 1, 126)),
+                                width: 3,
+                                color: Color.fromARGB(255, 252, 1, 126),
+                              ),
                               borderRadius: BorderRadius.circular(38),
                             ),
                             child: Container(
                               decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.black),
+                                  border: Border.all(
+                                    width: 2,
+                                    color: Colors.black,
+                                  ),
                                   borderRadius: BorderRadius.circular(38),
                                   image: DecorationImage(
                                       image: AssetImage("images/me.jpg"),
@@ -307,14 +321,23 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 40,
-                margin: EdgeInsets.only(left: 10),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.favorite_border_sharp,
-                      color: Colors.white,
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            fav1 = !fav1;
+                          });
+                        },
+                        icon: fav1
+                            ? Icon(
+                                Icons.favorite_outlined,
+                                color: Colors.red,
+                              )
+                            : Icon(
+                                Icons.favorite_outline_sharp,
+                                color: Colors.white,
+                              )),
                     Icon(
                       Icons.messenger_outline,
                       color: Colors.white,
@@ -490,14 +513,23 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 40,
-                margin: EdgeInsets.only(left: 10),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.favorite_border_sharp,
-                      color: Colors.white,
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            fav2 = !fav2;
+                          });
+                        },
+                        icon: fav2
+                            ? Icon(
+                                Icons.favorite_outlined,
+                                color: Colors.red,
+                              )
+                            : Icon(
+                                Icons.favorite_outline_sharp,
+                                color: Colors.white,
+                              )),
                     Icon(
                       Icons.messenger_outline,
                       color: Colors.white,
@@ -655,14 +687,23 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 40,
-                margin: EdgeInsets.only(left: 10),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.favorite_border_sharp,
-                      color: Colors.white,
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            fav3 = !fav3;
+                          });
+                        },
+                        icon: fav3
+                            ? Icon(
+                                Icons.favorite_outlined,
+                                color: Colors.red,
+                              )
+                            : Icon(
+                                Icons.favorite_outline_sharp,
+                                color: Colors.white,
+                              )),
                     Icon(
                       Icons.messenger_outline,
                       color: Colors.white,
@@ -817,14 +858,23 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 40,
-                margin: EdgeInsets.only(left: 10),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.favorite_border_sharp,
-                      color: Colors.white,
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            fav4 = !fav4;
+                          });
+                        },
+                        icon: fav4
+                            ? Icon(
+                                Icons.favorite_outlined,
+                                color: Colors.red,
+                              )
+                            : Icon(
+                                Icons.favorite_outline_sharp,
+                                color: Colors.white,
+                              )),
                     Icon(
                       Icons.messenger_outline,
                       color: Colors.white,
@@ -961,14 +1011,23 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 40,
-                margin: EdgeInsets.only(left: 10),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.favorite_border_sharp,
-                      color: Colors.white,
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            fav5 = !fav5;
+                          });
+                        },
+                        icon: fav5
+                            ? Icon(
+                                Icons.favorite_outlined,
+                                color: Colors.red,
+                              )
+                            : Icon(
+                                Icons.favorite_outline_sharp,
+                                color: Colors.white,
+                              )),
                     Icon(
                       Icons.messenger_outline,
                       color: Colors.white,
