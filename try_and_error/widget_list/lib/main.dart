@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widget_list/widget_list/w1.dart';
+import 'package:widget_list/widget_list/boreder_gradient.dart';
 
 void main() {
   runApp(const MyApp());
