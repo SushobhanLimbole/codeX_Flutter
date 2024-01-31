@@ -46,25 +46,37 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Container(
-                            height: 76,
-                            width: 76,
+                            height: 78,
+                            width: 78,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 3,
-                                color: Color.fromARGB(255, 252, 1, 126),
-                              ),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Colors.yellow,
+                                    Colors.amber,
+                                    Color.fromARGB(255, 255, 119, 0),
+                                    Color.fromARGB(255, 244, 44, 13),
+                                    Color.fromARGB(235, 233, 30, 98),
+                                    Colors.purple,
+                                    Colors.purple,
+                                  ]),
                               borderRadius: BorderRadius.circular(38),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                    color: Colors.black,
-                                  ),
-                                  borderRadius: BorderRadius.circular(38),
-                                  image: DecorationImage(
-                                      image: AssetImage("images/me.jpg"),
-                                      fit: BoxFit.cover)),
+                            child: Center(
+                              child: Container(
+                                height: 73,
+                                width: 73,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36),
+                                    image: DecorationImage(
+                                        image: AssetImage("images/me.jpg"),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
@@ -86,23 +98,38 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Container(
-                            height: 76,
-                            width: 76,
+                            height: 78,
+                            width: 78,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 3,
-                                  color: Color.fromARGB(255, 252, 1, 126)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Colors.yellow,
+                                    Colors.amber,
+                                    Color.fromARGB(255, 255, 119, 0),
+                                    Color.fromARGB(255, 244, 44, 13),
+                                    Color.fromARGB(235, 233, 30, 98),
+                                    Colors.purple,
+                                    Colors.purple,
+                                  ]),
                               borderRadius: BorderRadius.circular(38),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.black),
-                                  borderRadius: BorderRadius.circular(38),
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage("images/varad-ingale.jpg"),
-                                      fit: BoxFit.cover)),
+                            child: Center(
+                              child: Container(
+                                height: 73,
+                                width: 73,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36),
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            "images/varad-ingale.jpg"),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
@@ -124,22 +151,37 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Container(
-                            height: 76,
-                            width: 76,
+                            height: 78,
+                            width: 78,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 3,
-                                  color: Color.fromARGB(255, 252, 1, 126)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Colors.yellow,
+                                    Colors.amber,
+                                    Color.fromARGB(255, 255, 119, 0),
+                                    Color.fromARGB(255, 244, 44, 13),
+                                    Color.fromARGB(235, 233, 30, 98),
+                                    Colors.purple,
+                                    Colors.purple,
+                                  ]),
                               borderRadius: BorderRadius.circular(38),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.black),
-                                  borderRadius: BorderRadius.circular(38),
-                                  image: DecorationImage(
-                                      image: AssetImage("images/badal.jpg"),
-                                      fit: BoxFit.cover)),
+                            child: Center(
+                              child: Container(
+                                height: 73,
+                                width: 73,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36),
+                                    image: DecorationImage(
+                                        image: AssetImage("images/badal.jpg"),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
@@ -161,23 +203,38 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Container(
-                            height: 76,
-                            width: 76,
+                            height: 78,
+                            width: 78,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 3,
-                                  color: Color.fromARGB(255, 252, 1, 126)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Colors.yellow,
+                                    Colors.amber,
+                                    Color.fromARGB(255, 255, 119, 0),
+                                    Color.fromARGB(255, 244, 44, 13),
+                                    Color.fromARGB(235, 233, 30, 98),
+                                    Colors.purple,
+                                    Colors.purple,
+                                  ]),
                               borderRadius: BorderRadius.circular(38),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.black),
-                                  borderRadius: BorderRadius.circular(38),
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          "images/vedant-kumbhar.jpg"),
-                                      fit: BoxFit.cover)),
+                            child: Center(
+                              child: Container(
+                                height: 73,
+                                width: 73,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36),
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            "images/vedant-kumbhar.jpg"),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
@@ -199,22 +256,37 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Container(
-                            height: 76,
-                            width: 76,
+                            height: 78,
+                            width: 78,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 3,
-                                  color: Color.fromARGB(255, 252, 1, 126)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Colors.yellow,
+                                    Colors.amber,
+                                    Color.fromARGB(255, 255, 119, 0),
+                                    Color.fromARGB(255, 244, 44, 13),
+                                    Color.fromARGB(235, 233, 30, 98),
+                                    Colors.purple,
+                                    Colors.purple,
+                                  ]),
                               borderRadius: BorderRadius.circular(38),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.black),
-                                  borderRadius: BorderRadius.circular(38),
-                                  image: DecorationImage(
-                                      image: AssetImage("images/pavan.jpg"),
-                                      fit: BoxFit.cover)),
+                            child: Center(
+                              child: Container(
+                                height: 73,
+                                width: 73,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36),
+                                    image: DecorationImage(
+                                        image: AssetImage("images/pavan.jpg"),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
@@ -237,23 +309,38 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Container(
-                            height: 76,
-                            width: 76,
+                            height: 78,
+                            width: 78,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 3,
-                                  color: Color.fromARGB(255, 252, 1, 126)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Colors.yellow,
+                                    Colors.amber,
+                                    Color.fromARGB(255, 255, 119, 0),
+                                    Color.fromARGB(255, 244, 44, 13),
+                                    Color.fromARGB(235, 233, 30, 98),
+                                    Colors.purple,
+                                    Colors.purple,
+                                  ]),
                               borderRadius: BorderRadius.circular(38),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.black),
-                                  borderRadius: BorderRadius.circular(38),
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          "images/atharv-jadhav.jpg"),
-                                      fit: BoxFit.cover)),
+                            child: Center(
+                              child: Container(
+                                height: 73,
+                                width: 73,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36),
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            "images/atharv-jadhav.jpg"),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
@@ -278,20 +365,37 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 10),
-                      height: 30,
-                      width: 30,
+                      height: 32,
+                      width: 32,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 1, color: Color.fromARGB(255, 252, 1, 126)),
-                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Colors.yellow,
+                              Colors.amber,
+                              Color.fromARGB(255, 255, 119, 0),
+                              Color.fromARGB(255, 244, 44, 13),
+                              Color.fromARGB(235, 233, 30, 98),
+                              Colors.purple,
+                              Colors.purple,
+                            ]),
+                        borderRadius: BorderRadius.circular(38),
                       ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage("images/me.jpg"),
-                                fit: BoxFit.cover)),
+                      child: Center(
+                        child: Container(
+                          height: 29,
+                          width: 29,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 0.5,
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(14),
+                              image: DecorationImage(
+                                  image: AssetImage("images/me.jpg"),
+                                  fit: BoxFit.cover)),
+                        ),
                       ),
                     ),
                     Container(
@@ -470,20 +574,37 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 10),
-                      height: 30,
-                      width: 30,
+                      height: 32,
+                      width: 32,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 1, color: Color.fromARGB(255, 252, 1, 126)),
-                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Colors.yellow,
+                              Colors.amber,
+                              Color.fromARGB(255, 255, 119, 0),
+                              Color.fromARGB(255, 244, 44, 13),
+                              Color.fromARGB(235, 233, 30, 98),
+                              Colors.purple,
+                              Colors.purple,
+                            ]),
+                        borderRadius: BorderRadius.circular(38),
                       ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage("images/varad-ingale.jpg"),
-                                fit: BoxFit.cover)),
+                      child: Center(
+                        child: Container(
+                          height: 29,
+                          width: 29,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 0.5,
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(14),
+                              image: DecorationImage(
+                                  image: AssetImage("images/varad-ingale.jpg"),
+                                  fit: BoxFit.cover)),
+                        ),
                       ),
                     ),
                     Container(
@@ -644,20 +765,37 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 10),
-                      height: 30,
-                      width: 30,
+                      height: 32,
+                      width: 32,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 1, color: Color.fromARGB(255, 252, 1, 126)),
-                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Colors.yellow,
+                              Colors.amber,
+                              Color.fromARGB(255, 255, 119, 0),
+                              Color.fromARGB(255, 244, 44, 13),
+                              Color.fromARGB(235, 233, 30, 98),
+                              Colors.purple,
+                              Colors.purple,
+                            ]),
+                        borderRadius: BorderRadius.circular(38),
                       ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage("images/pavan.jpg"),
-                                fit: BoxFit.cover)),
+                      child: Center(
+                        child: Container(
+                          height: 29,
+                          width: 29,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 0.5,
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(14),
+                              image: DecorationImage(
+                                  image: AssetImage("images/pavan.jpg"),
+                                  fit: BoxFit.cover)),
+                        ),
                       ),
                     ),
                     Container(
@@ -815,20 +953,37 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 10),
-                      height: 30,
-                      width: 30,
+                      height: 32,
+                      width: 32,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 1, color: Color.fromARGB(255, 252, 1, 126)),
-                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Colors.yellow,
+                              Colors.amber,
+                              Color.fromARGB(255, 255, 119, 0),
+                              Color.fromARGB(255, 244, 44, 13),
+                              Color.fromARGB(235, 233, 30, 98),
+                              Colors.purple,
+                              Colors.purple,
+                            ]),
+                        borderRadius: BorderRadius.circular(38),
                       ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage("images/natgeo.jpg"),
-                                fit: BoxFit.cover)),
+                      child: Center(
+                        child: Container(
+                          height: 29,
+                          width: 29,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 0.5,
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(14),
+                              image: DecorationImage(
+                                  image: AssetImage("images/natgeo.jpg"),
+                                  fit: BoxFit.cover)),
+                        ),
                       ),
                     ),
                     Container(
@@ -968,20 +1123,37 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 10),
-                      height: 30,
-                      width: 30,
+                      height: 32,
+                      width: 32,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 1, color: Color.fromARGB(255, 252, 1, 126)),
-                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Colors.yellow,
+                              Colors.amber,
+                              Color.fromARGB(255, 255, 119, 0),
+                              Color.fromARGB(255, 244, 44, 13),
+                              Color.fromARGB(235, 233, 30, 98),
+                              Colors.purple,
+                              Colors.purple,
+                            ]),
+                        borderRadius: BorderRadius.circular(38),
                       ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage("images/atharv-jadhav.jpg"),
-                                fit: BoxFit.cover)),
+                      child: Center(
+                        child: Container(
+                          height: 29,
+                          width: 29,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 0.5,
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(14),
+                              image: DecorationImage(
+                                  image: AssetImage("images/atharv-jadhav.jpg"),
+                                  fit: BoxFit.cover)),
+                        ),
                       ),
                     ),
                     Container(
