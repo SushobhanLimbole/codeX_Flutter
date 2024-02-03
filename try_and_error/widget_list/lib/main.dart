@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:widget_list/widget_list/boreder_gradient.dart';
+import 'package:widget_list/widget_list/border_gradient.dart';
+import 'package:widget_list/widget_list/navigation/screenone.dart';
+//import 'package:widget_list/widget_list/name_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Widget_List(),
+      home: ScreenOne(),
       debugShowCheckedModeBanner: false,
     );
   }
