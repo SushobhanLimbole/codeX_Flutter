@@ -15,14 +15,14 @@ class _PracticeState extends State<Practice> {
       body: Column(
         children: [
           Container(
-            height: 80,
+            height: 42,
             width: MediaQuery.of(context).size.width,
             child: Row(
               children: [
                 Container(
                   margin: EdgeInsets.only(left: 10),
-                  height: 78,
-                  width: 78,
+                  height: 36,
+                  width: 36,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
@@ -40,11 +40,11 @@ class _PracticeState extends State<Practice> {
                   ),
                   child: Center(
                     child: Container(
-                      height: 73,
-                      width: 73,
+                      height: 33,
+                      width: 33,
                       decoration: BoxDecoration(
                           border: Border.all(
-                            width: 2,
+                            width: 1.3,
                             color: Colors.black,
                           ),
                           shape: BoxShape.circle,
@@ -57,10 +57,10 @@ class _PracticeState extends State<Practice> {
                 Padding(padding: EdgeInsets.only(left: 5)),
                 Text(
                   "limbolesushobhan",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width - 224,
+                  width: MediaQuery.of(context).size.width - 175,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -68,13 +68,13 @@ class _PracticeState extends State<Practice> {
                           onPressed: () {
                             print("icon pressed");
                           },
-                          icon: Icon(Icons.ac_unit_rounded))
+                          icon: Icon(Icons.more_vert_sharp))
                     ],
                   ),
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
