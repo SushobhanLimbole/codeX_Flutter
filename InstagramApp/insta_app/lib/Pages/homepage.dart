@@ -358,15 +358,22 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              Padding(padding: EdgeInsets.only(bottom: 5)),
               Container(
-                height: 40,
-                margin: EdgeInsets.only(top: 10),
+                height: 1,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.white12,
+              ),
+              Container(
+                height: 42,
+                margin: EdgeInsets.only(top: 4, bottom: 5),
+                width: MediaQuery.of(context).size.width,
                 child: Row(
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 10),
-                      height: 32,
-                      width: 32,
+                      height: 36,
+                      width: 36,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.bottomLeft,
@@ -380,39 +387,48 @@ class _HomePageState extends State<HomePage> {
                               Colors.purple,
                               Colors.purple,
                             ]),
-                        borderRadius: BorderRadius.circular(38),
+                        shape: BoxShape.circle,
                       ),
                       child: Center(
                         child: Container(
-                          height: 29,
-                          width: 29,
+                          height: 33,
+                          width: 33,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                width: 0.5,
+                                width: 1.5,
                                 color: Colors.black,
                               ),
-                              borderRadius: BorderRadius.circular(14),
+                              shape: BoxShape.circle,
                               image: DecorationImage(
                                   image: AssetImage("images/me.jpg"),
                                   fit: BoxFit.cover)),
                         ),
                       ),
                     ),
+                    Padding(padding: EdgeInsets.only(left: 5)),
+                    Text(
+                      "limbolesushobhan",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                     Container(
-                      margin: EdgeInsets.only(left: 10),
-                      child: Text(
-                        "limbolesushobhan",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                            color: Colors.white),
+                      width: MediaQuery.of(context).size.width - 175,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                print("icon pressed");
+                              },
+                              icon: Icon(
+                                Icons.more_vert_sharp,
+                                color: Colors.white,
+                              ))
+                        ],
                       ),
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 156)),
-                    Icon(
-                      Icons.more_vert_sharp,
-                      color: Colors.white,
-                    ),
+                    )
                   ],
                 ),
               ),
