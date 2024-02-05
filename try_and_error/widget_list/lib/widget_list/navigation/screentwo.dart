@@ -14,6 +14,43 @@ class _ScreenTwoState extends State<ScreenTwo> {
       appBar: AppBar(
         title: Text("Second Screen"),
       ),
+      body: SizedBox(
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.red,
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.amber,
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.orange,
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.pink,
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.blue,
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.purple,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
