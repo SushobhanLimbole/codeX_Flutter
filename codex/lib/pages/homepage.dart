@@ -25,6 +25,182 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //Just pass a String to give a title bar above the logos
+  Widget TitleBar({String? name}) {
+    return Container(
+      height: 60,
+      child: Row(children: [
+        Container(
+          margin: EdgeInsets.only(left: 25),
+          child: Text(
+            "$name",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          ),
+        ),
+      ]),
+    );
+  }
+
+  Widget LanguageWidgets({String? startLogo, String? endLogo}) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        height: 145,
+        child: Row(
+          children: [
+            StartLogo(logo: startLogo, routePage: JavaSyllabus()),
+            BetweenLogo(
+                logo: "images/Dart-logo.png", routePage: DartSyllabus()),
+            BetweenLogo(
+                logo: "images/Python-logo.png", routePage: PythonSyllabus()),
+            EndLogo(logo: endLogo, routePage: JsSyllabus())
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget FrameWorkWidgets({String? startLogo, String? endLogo}) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        height: 145,
+        child: Row(
+          children: [
+            StartLogo(logo: startLogo, routePage: FlutterSyllabus()),
+            BetweenLogo(
+                logo: "images/spring-logo.png", routePage: SpringSyllabus()),
+            BetweenLogo(
+                logo: "images/hibernate-logo.png",
+                routePage: HibernateSyllabus()),
+            EndLogo(logo: endLogo, routePage: ReactNativeSyllabus())
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget DBWidgets({String? startLogo, String? endLogo}) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        height: 145,
+        child: Row(
+          children: [
+            StartLogo(logo: startLogo, routePage: MySQLSyllabus()),
+            BetweenLogo(
+                logo: "images/mongodb.png", routePage: MongoDBSyllabus()),
+            BetweenLogo(logo: "images/oracle.png", routePage: OracleSyllabus()),
+            EndLogo(logo: endLogo, routePage: MariaDBSyllabus())
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget ToolsWidgets({String? startLogo, String? endLogo}) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        height: 145,
+        child: Row(
+          children: [
+            StartLogo(logo: startLogo, routePage: VSCodeSyllabus()),
+            BetweenLogo(
+                logo: "images/eclipse.png", routePage: EclipseSyllabus()),
+            BetweenLogo(logo: "images/git-img.png", routePage: GitSyllabus()),
+            BetweenLogo(logo: "images/github.png", routePage: GithubSyllabus()),
+            EndLogo(logo: endLogo, routePage: PostmanSyllabus())
+          ],
+        ),
+      ),
+    );
+  }
+
+  //Made a function for Start logos due to their different margin
+  Widget StartLogo({String? logo, Widget routePage = const HomePage()}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => routePage));
+      },
+      child: Container(
+        height: 120,
+        width: 120,
+        margin: EdgeInsets.only(left: 40),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+                color: Colors.black, width: 1, style: BorderStyle.solid),
+            boxShadow: [
+              BoxShadow(
+                  color: Color.fromARGB(156, 10, 10, 10),
+                  // offset: Offset(2, 1),
+                  blurRadius: 8),
+            ],
+            image: DecorationImage(
+              image: AssetImage("$logo"),
+              fit: BoxFit.cover,
+            )),
+      ),
+    );
+  }
+
+  ////Made a function for Between logos due to their different margin
+  Widget BetweenLogo({String? logo, Widget routePage = const HomePage()}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => routePage));
+      },
+      child: Container(
+        height: 120,
+        width: 120,
+        margin: EdgeInsets.only(left: 30),
+        decoration: BoxDecoration(
+            border: Border.all(
+                color: Colors.black, width: 1, style: BorderStyle.solid),
+            boxShadow: [
+              BoxShadow(
+                  color: Color.fromARGB(156, 10, 10, 10),
+                  // offset: Offset(2, 1),
+                  blurRadius: 8),
+            ],
+            borderRadius: BorderRadius.circular(20),
+            image: DecorationImage(
+              image: AssetImage("$logo"),
+              fit: BoxFit.cover,
+            )),
+      ),
+    );
+  }
+
+  //Made a function for End logos due to their different margin
+  Widget EndLogo({String? logo, Widget routePage = const HomePage()}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => routePage));
+      },
+      child: Container(
+        height: 120,
+        width: 120,
+        margin: EdgeInsets.only(right: 40, left: 30),
+        decoration: BoxDecoration(
+            border: Border.all(
+                color: Colors.black, width: 1, style: BorderStyle.solid),
+            boxShadow: [
+              BoxShadow(color: Color.fromARGB(156, 10, 10, 10), blurRadius: 8),
+            ],
+            borderRadius: BorderRadius.circular(20),
+            image: DecorationImage(
+              image: AssetImage("$logo"),
+              fit: BoxFit.cover,
+            )),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,595 +227,28 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SizedBox(
         child: ListView(children: [
-          Container(
-            height: 60,
-            child: Row(children: [
-              Container(
-                margin: EdgeInsets.only(left: 25),
-                child: Text(
-                  "Languages",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ),
-            ]),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              height: 130,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => JavaSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(left: 40),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          image: DecorationImage(
-                            image: AssetImage("images/Java.jpeg"),
-                            // image: NetworkImage(
-                            //     "https://tse1.mm.bing.net/th?id=OIP.4Z6gIWroOVvUsziZcJKL6QHaFj&pid=Api&P=0&h=220"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DartSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/Dart-logo.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PythonSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/Python-logo.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => JsSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(right: 40),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/js-logo.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 60,
-            child: Row(children: [
-              Container(
-                margin: EdgeInsets.only(left: 25),
-                child: Text(
-                  "Frameworks",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ),
-            ]),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              height: 130,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FlutterSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(left: 40),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/flutter-logo.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SpringSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/spring-logo.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HibernateSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/hibernate-logo.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ReactNativeSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(right: 40),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/react-native-logo.png"),
-                            // image: NetworkImage(
-                            //     "https://cdn-images-1.medium.com/max/1600/1*glkosslpqhOOrGyEqjlYdw.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 60,
-            child: Row(children: [
-              Container(
-                margin: EdgeInsets.only(left: 25),
-                child: Text(
-                  "Databases",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ),
-            ]),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              height: 130,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MySQLSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(left: 40),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/mysql-img.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MongoDBSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/mongodb.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OracleSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/oracle.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MariaDBSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(right: 40),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/maria.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 60,
-            child: Row(children: [
-              Container(
-                margin: EdgeInsets.only(left: 25),
-                child: Text(
-                  "Tools",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ),
-            ]),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              height: 130,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => VSCodeSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(left: 40),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/vs-logo.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EclipseSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/eclipse.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GitSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/git-img.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GithubSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/github.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 30)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PostmanSyllabus()));
-                    },
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      margin: EdgeInsets.only(right: 40),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(156, 10, 10, 10),
-                                offset: Offset(2, 1),
-                                blurRadius: 3),
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage("images/postman.png"),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          //Languages
+          TitleBar(name: "Languages"),
+          //Logos
+          LanguageWidgets(
+              startLogo: "images/Java.jpeg", endLogo: "images/js-logo.png"),
+          //FrameWorks
+          TitleBar(name: "Frameworks"),
+          //Logos
+          FrameWorkWidgets(
+              startLogo: "images/flutter-logo.png",
+              endLogo: "images/react-native-logo.png"),
+          //Databases
+          TitleBar(name: "Databases"),
+          //Logos
+          DBWidgets(
+              startLogo: "images/mysql-img.png", endLogo: "images/maria.png"),
+          //Tools
+          TitleBar(name: "Tools"),
+          //Logos
+          ToolsWidgets(
+              startLogo: "images/vs-logo.png", endLogo: "images/postman.png"),
+
           Row(
             children: [
               Container(
