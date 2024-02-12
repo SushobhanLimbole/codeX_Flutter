@@ -1,3 +1,5 @@
+import 'package:codex/pages/javaCodes.dart';
+import 'package:codex/pages/syllabuspage.dart';
 import 'package:codex/pages/databases/mariaDB.dart';
 import 'package:codex/pages/databases/mongDB.dart';
 import 'package:codex/pages/databases/mysql.dart';
@@ -16,6 +18,7 @@ import 'package:codex/pages/tools/github.dart';
 import 'package:codex/pages/tools/postman.dart';
 import 'package:codex/pages/tools/vscode.dart';
 import 'package:flutter/material.dart';
+import 'topics.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,85 +44,114 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget LanguageWidgets({String? startLogo, String? endLogo}) {
+  Widget LanguageWidgets() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         height: 145,
         child: Row(
           children: [
-            StartLogo(logo: startLogo, routePage: JavaSyllabus()),
-            BetweenLogo(
-                logo: "images/Dart-logo.png", routePage: DartSyllabus()),
-            BetweenLogo(
-                logo: "images/Python-logo.png", routePage: PythonSyllabus()),
-            EndLogo(logo: endLogo, routePage: JsSyllabus())
+            Logo(
+              "images/Java.jpeg",
+              Syllabus(
+                topics: java,
+                code: javaCodes,
+                titleName: "Java",
+              ),
+              edgeInsetsMargin: EdgeInsets.only(left: 40),
+            ),
+            Logo("images/Dart-logo.png", DartSyllabus()),
+            Logo("images/Python-logo.png", PythonSyllabus()),
+            Logo(
+              "images/js-logo.png",
+              JsSyllabus(),
+              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget FrameWorkWidgets({String? startLogo, String? endLogo}) {
+  Widget FrameWorkWidgets() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         height: 145,
         child: Row(
           children: [
-            StartLogo(logo: startLogo, routePage: FlutterSyllabus()),
-            BetweenLogo(
-                logo: "images/spring-logo.png", routePage: SpringSyllabus()),
-            BetweenLogo(
-                logo: "images/hibernate-logo.png",
-                routePage: HibernateSyllabus()),
-            EndLogo(logo: endLogo, routePage: ReactNativeSyllabus())
+            Logo(
+              "images/flutter-logo.png",
+              FlutterSyllabus(),
+              edgeInsetsMargin: EdgeInsets.only(left: 40),
+            ),
+            Logo("images/spring-logo.png", SpringSyllabus()),
+            Logo("images/hibernate-logo.png", HibernateSyllabus()),
+            Logo(
+              "images/react-native-logo.png",
+              ReactNativeSyllabus(),
+              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget DBWidgets({String? startLogo, String? endLogo}) {
+  Widget DBWidgets() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         height: 145,
         child: Row(
           children: [
-            StartLogo(logo: startLogo, routePage: MySQLSyllabus()),
-            BetweenLogo(
-                logo: "images/mongodb.png", routePage: MongoDBSyllabus()),
-            BetweenLogo(logo: "images/oracle.png", routePage: OracleSyllabus()),
-            EndLogo(logo: endLogo, routePage: MariaDBSyllabus())
+            Logo(
+              "images/mysql-img.png",
+              MySQLSyllabus(),
+              edgeInsetsMargin: EdgeInsets.only(left: 40),
+            ),
+            Logo("images/mongodb.png", MongoDBSyllabus()),
+            Logo("images/oracle.png", OracleSyllabus()),
+            Logo(
+              "images/maria.png",
+              MariaDBSyllabus(),
+              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget ToolsWidgets({String? startLogo, String? endLogo}) {
+  Widget ToolsWidgets() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         height: 145,
         child: Row(
           children: [
-            StartLogo(logo: startLogo, routePage: VSCodeSyllabus()),
-            BetweenLogo(
-                logo: "images/eclipse.png", routePage: EclipseSyllabus()),
-            BetweenLogo(logo: "images/git-img.png", routePage: GitSyllabus()),
-            BetweenLogo(logo: "images/github.png", routePage: GithubSyllabus()),
-            EndLogo(logo: endLogo, routePage: PostmanSyllabus())
+            Logo(
+              "images/vs-logo.png",
+              VSCodeSyllabus(),
+              edgeInsetsMargin: EdgeInsets.only(left: 40),
+            ),
+            Logo("images/eclipse.png", EclipseSyllabus()),
+            Logo("images/git-img.png", GitSyllabus()),
+            Logo("images/github.png", GithubSyllabus()),
+            Logo(
+              "images/postman.png",
+              PostmanSyllabus(),
+              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+            )
           ],
         ),
       ),
     );
   }
 
-  //Made a function for Start logos due to their different margin
-  Widget StartLogo({String? logo, Widget routePage = const HomePage()}) {
-    return GestureDetector(
+  Widget Logo(String logo, Widget routePage,
+      {EdgeInsets edgeInsetsMargin = const EdgeInsets.only(left: 30)}) {
+    return InkWell(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => routePage));
@@ -127,70 +159,15 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         height: 120,
         width: 120,
-        margin: EdgeInsets.only(left: 40),
+        margin: edgeInsetsMargin,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-                color: Colors.black, width: 1, style: BorderStyle.solid),
+            // border: Border.all(
+            //     color: Colors.black, width: 1, style: BorderStyle.solid),
             boxShadow: [
               BoxShadow(
                   color: Color.fromARGB(156, 10, 10, 10),
                   // offset: Offset(2, 1),
                   blurRadius: 8),
-            ],
-            image: DecorationImage(
-              image: AssetImage("$logo"),
-              fit: BoxFit.cover,
-            )),
-      ),
-    );
-  }
-
-  ////Made a function for Between logos due to their different margin
-  Widget BetweenLogo({String? logo, Widget routePage = const HomePage()}) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => routePage));
-      },
-      child: Container(
-        height: 120,
-        width: 120,
-        margin: EdgeInsets.only(left: 30),
-        decoration: BoxDecoration(
-            border: Border.all(
-                color: Colors.black, width: 1, style: BorderStyle.solid),
-            boxShadow: [
-              BoxShadow(
-                  color: Color.fromARGB(156, 10, 10, 10),
-                  // offset: Offset(2, 1),
-                  blurRadius: 8),
-            ],
-            borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              image: AssetImage("$logo"),
-              fit: BoxFit.cover,
-            )),
-      ),
-    );
-  }
-
-  //Made a function for End logos due to their different margin
-  Widget EndLogo({String? logo, Widget routePage = const HomePage()}) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => routePage));
-      },
-      child: Container(
-        height: 120,
-        width: 120,
-        margin: EdgeInsets.only(right: 40, left: 30),
-        decoration: BoxDecoration(
-            border: Border.all(
-                color: Colors.black, width: 1, style: BorderStyle.solid),
-            boxShadow: [
-              BoxShadow(color: Color.fromARGB(156, 10, 10, 10), blurRadius: 8),
             ],
             borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
@@ -230,24 +207,19 @@ class _HomePageState extends State<HomePage> {
           //Languages
           TitleBar(name: "Languages"),
           //Logos
-          LanguageWidgets(
-              startLogo: "images/Java.jpeg", endLogo: "images/js-logo.png"),
+          LanguageWidgets(),
           //FrameWorks
           TitleBar(name: "Frameworks"),
           //Logos
-          FrameWorkWidgets(
-              startLogo: "images/flutter-logo.png",
-              endLogo: "images/react-native-logo.png"),
+          FrameWorkWidgets(),
           //Databases
           TitleBar(name: "Databases"),
           //Logos
-          DBWidgets(
-              startLogo: "images/mysql-img.png", endLogo: "images/maria.png"),
+          DBWidgets(),
           //Tools
           TitleBar(name: "Tools"),
           //Logos
-          ToolsWidgets(
-              startLogo: "images/vs-logo.png", endLogo: "images/postman.png"),
+          ToolsWidgets(),
 
           Row(
             children: [
