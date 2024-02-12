@@ -1,4 +1,5 @@
-import 'package:codex/pages/javaCodes.dart';
+import 'package:codex/pages/codes.dart';
+// import 'package:codex/pages/javaCodes.dart';
 import 'package:codex/pages/syllabuspage.dart';
 import 'package:codex/pages/databases/mariaDB.dart';
 import 'package:codex/pages/databases/mongDB.dart';
@@ -9,7 +10,7 @@ import 'package:codex/pages/frameworks/hibernate.dart';
 import 'package:codex/pages/frameworks/reactnative.dart';
 import 'package:codex/pages/frameworks/spring.dart';
 import 'package:codex/pages/languages/dartpage.dart';
-import 'package:codex/pages/languages/javapage.dart';
+// import 'package:codex/pages/languages/javapage.dart';
 import 'package:codex/pages/languages/javascript.dart';
 import 'package:codex/pages/languages/pythonpage.dart';
 import 'package:codex/pages/tools/eclipse.dart';
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
               "images/Java.jpeg",
               Syllabus(
                 topics: java,
-                code: javaCodes,
+                code: javaCode,
                 titleName: "Java",
               ),
               edgeInsetsMargin: EdgeInsets.only(left: 40),

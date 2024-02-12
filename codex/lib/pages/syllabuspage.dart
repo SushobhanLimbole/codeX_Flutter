@@ -1,13 +1,11 @@
 import 'package:codex/pages/codepage.dart';
-import 'package:codex/pages/javaCodes.dart';
 import 'package:flutter/material.dart';
 
 class Syllabus extends StatelessWidget {
   final String? titleName;
   final List<String> topics;
   final List? code;
-  const Syllabus(
-      {super.key, required this.topics,  this.code, this.titleName});
+  const Syllabus({super.key, required this.topics, this.code, this.titleName});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +16,7 @@ class Syllabus extends StatelessWidget {
       ),
       body: Center(
         child: ListView.builder(
+          padding: EdgeInsets.only(top: 10, bottom: 10),
           itemCount: topics.length,
           itemBuilder: (context, index) {
             return InkWell(
@@ -25,13 +24,23 @@ class Syllabus extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => javaCodes[index]));
+                        builder: (context) => Codes(
+                              titleName: topics[index],
+                              code: code![index],
+                            )));
               },
               child: Container(
-                height: 100,
-                width: 100,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.black,
+                ),
+                margin: EdgeInsets.all(10),
                 child: Center(
-                  child: Text("${topics[index]}"),
+                  child: Text(
+                    "${topics[index]}",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             );
