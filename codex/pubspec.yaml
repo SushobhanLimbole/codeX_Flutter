@@ -33,7 +33,7 @@ dependencies:
   flutter_native_splash: ^2.2.19
   highlight: ^0.7.0
   flutter_highlighting: ^0.9.0+11.8.0
-
+  blurrycontainer: ^1.0.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -83,6 +83,12 @@ flutter:
     - images/vs-logo.png
     - images/react-native-logo.png
     - images/Java.jpeg
+    - images/login.jpg
+    - images/new-app-logo.png
+    - images/app-login.jpg
+    - images/Google.png
+    - images/Apple.png
+    - images/apple-logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
