@@ -1,4 +1,5 @@
-import 'package:codex/pages/homepage.dart';
+// import 'package:codex/pages/homepage.dart';
+import 'package:codex/pages/loginpage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LoginPage()
     );
   }
 }
