@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
           margin: EdgeInsets.only(left: 25),
           child: Text(
             "$name",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           ),
         ),
       ]),
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
-        height: 145,
+        height: 210,
         child: Row(
           children: [
             Logo(
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             Logo(
               "images/js-logo.png",
               JsSyllabus(),
-              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+              edgeInsetsMargin: EdgeInsets.only(left: 40, right: 40),
             )
           ],
         ),
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
-        height: 145,
+        height: 210,
         child: Row(
           children: [
             Logo(
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             Logo(
               "images/react-native-logo.png",
               ReactNativeSyllabus(),
-              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+              edgeInsetsMargin: EdgeInsets.only(left: 40, right: 40),
             )
           ],
         ),
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
-        height: 145,
+        height: 210,
         child: Row(
           children: [
             Logo(
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
             Logo(
               "images/maria.png",
               MariaDBSyllabus(),
-              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+              edgeInsetsMargin: EdgeInsets.only(left: 40, right: 40),
             )
           ],
         ),
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
-        height: 145,
+        height: 210,
         child: Row(
           children: [
             Logo(
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
             Logo(
               "images/postman.png",
               PostmanSyllabus(),
-              edgeInsetsMargin: EdgeInsets.only(left: 30, right: 40),
+              edgeInsetsMargin: EdgeInsets.only(left: 40, right: 40),
             )
           ],
         ),
@@ -151,24 +151,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget Logo(String logo, Widget routePage,
-      {EdgeInsets edgeInsetsMargin = const EdgeInsets.only(left: 30)}) {
+      {EdgeInsets edgeInsetsMargin = const EdgeInsets.only(left: 40)}) {
     return InkWell(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => routePage));
       },
       child: Container(
-        height: 120,
-        width: 120,
+        height: 130,
+        width: 130,
         margin: edgeInsetsMargin,
         decoration: BoxDecoration(
             // border: Border.all(
             //     color: Colors.black, width: 1, style: BorderStyle.solid),
             boxShadow: [
               BoxShadow(
-                  color: Color.fromARGB(156, 10, 10, 10),
-                  // offset: Offset(2, 1),
-                  blurRadius: 8),
+                  color: Colors.grey.shade600,
+                  offset: Offset(0, 13),
+                  spreadRadius: 3,
+                  blurRadius: 16),
             ],
             borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
@@ -205,6 +206,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SizedBox(
         child: ListView(children: [
+          SizedBox(height: 10),
           //Languages
           TitleBar(name: "Languages"),
           //Logos

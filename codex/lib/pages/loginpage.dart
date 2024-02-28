@@ -14,12 +14,12 @@ class LoginPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("images/app-login.jpg"), fit: BoxFit.fill)),
+                image: AssetImage("images/login.jpg"), fit: BoxFit.fill)),
         child: Center(
           child: SingleChildScrollView(
             child: Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white38),
+                  border: Border.all(color: Colors.white54),
                   borderRadius: BorderRadius.circular(20)),
               child: BlurryContainer(
                 height: 498,

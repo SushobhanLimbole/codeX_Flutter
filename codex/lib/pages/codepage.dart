@@ -17,22 +17,29 @@ class Codes extends StatelessWidget {
         title: Text("$titleName"),
         backgroundColor: Colors.black,
       ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: code!.length,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.all(10),
-              child: HighlightView(
-                "${code![index]}",
-                padding: EdgeInsets.all(10),
-                tabSize: 2,
-                languageId: java.id,
-                theme: githubDarkTheme,
+      body: ListView.builder(
+        itemCount: code!.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: Text("Program ${index + 1}:"),
               ),
-            );
-          },
-        ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.all(10),
+                child: HighlightView(
+                  "${code![index]}",
+                  padding: EdgeInsets.all(10),
+                  tabSize: 2,
+                  languageId: java.id,
+                  theme: githubDarkTheme,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
