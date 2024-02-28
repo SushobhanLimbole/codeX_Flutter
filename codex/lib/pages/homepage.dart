@@ -89,14 +89,14 @@ class _HomePageState extends State<HomePage> {
           Logo(
             "images/flutter-logo.png",
             FlutterSyllabus(),
-            edgeInsetsMargin: EdgeInsets.only(),
+            // edgeInsetsMargin: EdgeInsets.only(),
           ),
           Logo("images/spring-logo.png", SpringSyllabus()),
           Logo("images/hibernate-logo.png", HibernateSyllabus()),
           Logo(
             "images/react-native-logo.png",
             ReactNativeSyllabus(),
-            edgeInsetsMargin: EdgeInsets.only(),
+            // edgeInsetsMargin: EdgeInsets.only(),
           )
         ],
         options: CarouselOptions(
@@ -178,8 +178,11 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  Widget Logo(String logo, Widget routePage,
-      {EdgeInsets edgeInsetsMargin = const EdgeInsets.only()}) {
+  Widget Logo(
+    String logo,
+    Widget routePage,
+    // {EdgeInsets edgeInsetsMargin = const EdgeInsets.only()}
+  ) {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -189,7 +192,7 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           height: 150,
           width: 150,
-          margin: edgeInsetsMargin,
+          // margin: edgeInsetsMargin,
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
