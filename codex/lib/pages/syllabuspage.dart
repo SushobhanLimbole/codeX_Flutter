@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 class Syllabus extends StatelessWidget {
   final String? titleName;
-  final List<String> topics;
-  final List? code;
-  const Syllabus({super.key, required this.topics, this.code, this.titleName});
+  final List? data;
+  const Syllabus({super.key, this.data, this.titleName});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class Syllabus extends StatelessWidget {
       body: Center(
         child: ListView.builder(
           padding: EdgeInsets.only(top: 10, bottom: 10),
-          itemCount: topics.length,
+          itemCount: data!.length,
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
@@ -25,8 +24,9 @@ class Syllabus extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => Codes(
-                              titleName: topics[index],
-                              code: code![index],
+                              titleName: data![index]["topic"],
+                              code: data![index]["code"],
+                              quiz: data![index]["quiz"],
                             )));
               },
               child: Container(
@@ -38,7 +38,7 @@ class Syllabus extends StatelessWidget {
                 margin: EdgeInsets.all(10),
                 child: Center(
                   child: Text(
-                    "${topics[index]}",
+                    "${data![index]["topic"]}",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

@@ -300,7 +300,6 @@ class _HomeState extends State<Home> {
           boxShadow: [
             BoxShadow(
                 color: Color.fromARGB(156, 10, 10, 10),
-                // offset: Offset(2, 1),
                 blurRadius: 8),
           ],
           borderRadius: BorderRadius.circular(20),

@@ -54,8 +54,7 @@ class _HomePageState extends State<HomePage> {
             Logo(
               "images/Java.jpeg",
               Syllabus(
-                topics: java,
-                code: javaCode,
+                data: javaData,
                 titleName: "Java",
               ),
               // edgeInsetsMargin: EdgeInsets.only(left: 40),

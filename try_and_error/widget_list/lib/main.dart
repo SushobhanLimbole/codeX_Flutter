@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 //import 'package:widget_list/widget_list/border_gradient.dart';
 //import 'package:widget_list/widget_list/navigation/screenone.dart';
 import 'package:widget_list/widget_list/navigation/screentwo.dart';
+import 'package:widget_list/widget_list/navigation/syllabus.dart';
+import 'package:widget_list/widget_list/navigation/topics.dart';
 //import 'package:widget_list/widget_list/name_bar.dart';
 
 void main() {

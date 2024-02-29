@@ -1,3 +1,4 @@
+import 'package:codex/pages/quizpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlighting/flutter_highlighting.dart';
 import 'package:flutter_highlighting/themes/github-dark.dart';
@@ -8,7 +9,8 @@ import 'package:highlighting/languages/java.dart';
 class Codes extends StatelessWidget {
   final String? titleName;
   final List? code;
-  const Codes({super.key, this.titleName, this.code});
+  final List? quiz;
+  const Codes({super.key, this.titleName, this.code, this.quiz});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,18 @@ class Codes extends StatelessWidget {
             ],
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => QuizPage(
+                        quiz: quiz,
+                      )));
+        },
+        child: Text("Quiz"),
       ),
     );
   }
