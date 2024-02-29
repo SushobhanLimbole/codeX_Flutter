@@ -23,13 +23,18 @@ import 'topics.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  String? name;
+  String? password;
+  HomePage({super.key, this.name, this.password});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(name, password);
 }
 
 class _HomePageState extends State<HomePage> {
+  String? name;
+  String? password;
+  _HomePageState(this.name, this.password);
   //Just pass a String to give a title bar above the logos
   Widget TitleBar({String? name}) {
     return Container(
@@ -48,7 +53,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget LanguageWidgets() {
     return Container(
-      height: 235,
+      height: 225,
       child: CarouselSlider(
           items: [
             Logo(
@@ -71,18 +76,17 @@ class _HomePageState extends State<HomePage> {
               enableInfiniteScroll: true,
               autoPlay: true,
               enlargeCenterPage: true,
-              autoPlayCurve: Curves.decelerate,
-              viewportFraction: 0.5,
-              enlargeFactor: 0.4,
+              autoPlayCurve: Curves.easeInOut,
+              viewportFraction: 0.45,
+              enlargeFactor: 0.38,
               initialPage: 0,
-              autoPlayAnimationDuration: Duration(seconds: 1),
               autoPlayInterval: Duration(seconds: 2))),
     );
   }
 
   Widget FrameWorkWidgets() {
     return Container(
-      height: 235,
+      height: 225,
       child: CarouselSlider(
         items: [
           Logo(
@@ -102,12 +106,11 @@ class _HomePageState extends State<HomePage> {
             enableInfiniteScroll: true,
             autoPlay: true,
             enlargeCenterPage: true,
-            autoPlayCurve: Curves.decelerate,
-            viewportFraction: 0.5,
-            enlargeFactor: 0.4,
+            autoPlayCurve: Curves.easeInOut,
+            viewportFraction: 0.45,
+            enlargeFactor: 0.38,
             initialPage: 0,
             reverse: true,
-            autoPlayAnimationDuration: Duration(seconds: 1),
             autoPlayInterval: Duration(seconds: 2)),
       ),
     );
@@ -115,7 +118,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget DBWidgets() {
     return Container(
-        height: 235,
+        height: 225,
         child: CarouselSlider(
           items: [
             Logo(
@@ -135,18 +138,17 @@ class _HomePageState extends State<HomePage> {
               enableInfiniteScroll: true,
               autoPlay: true,
               enlargeCenterPage: true,
-              autoPlayCurve: Curves.decelerate,
-              viewportFraction: 0.5,
-              enlargeFactor: 0.4,
+              autoPlayCurve: Curves.easeInOut,
+              viewportFraction: 0.45,
+              enlargeFactor: 0.38,
               initialPage: 0,
-              autoPlayAnimationDuration: Duration(seconds: 1),
               autoPlayInterval: Duration(seconds: 2)),
         ));
   }
 
   Widget ToolsWidgets() {
     return Container(
-        height: 235,
+        height: 225,
         child: CarouselSlider(
           items: [
             Logo(
@@ -167,12 +169,11 @@ class _HomePageState extends State<HomePage> {
               enableInfiniteScroll: true,
               autoPlay: true,
               enlargeCenterPage: true,
-              autoPlayCurve: Curves.decelerate,
-              viewportFraction: 0.5,
-              enlargeFactor: 0.4,
+              autoPlayCurve: Curves.easeInOut,
+              viewportFraction: 0.45,
+              enlargeFactor: 0.38,
               initialPage: 0,
               reverse: true,
-              autoPlayAnimationDuration: Duration(seconds: 1),
               autoPlayInterval: Duration(seconds: 2)),
         ));
   }
@@ -189,8 +190,8 @@ class _HomePageState extends State<HomePage> {
       },
       child: Center(
         child: Container(
-          height: 150,
-          width: 150,
+          height: 140,
+          width: 140,
           // margin: edgeInsetsMargin,
           decoration: BoxDecoration(
               boxShadow: [
@@ -263,9 +264,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ]),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   height: 60,
-      // ),
     );
   }
 }

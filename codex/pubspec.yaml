@@ -90,6 +90,10 @@ flutter:
     - images/Google.png
     - images/Apple.png
     - images/apple-logo.png
+    - images/login-bg.jpg
+    - images/score.jpg
+    - images/login1.jpg
+    - images/score1.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

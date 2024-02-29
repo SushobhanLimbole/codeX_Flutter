@@ -45,9 +45,9 @@ class _QuizPageState extends State<QuizPage> {
         }
       }
     } else {
-      return Colors.blue;
+      return Colors.black;
     }
-    return Colors.blue;
+    return Colors.black;
   }
 
   @override
@@ -66,14 +66,15 @@ class _QuizPageState extends State<QuizPage> {
             children: [
               Padding(padding: EdgeInsets.only(top: 100)),
               Text(
-                "Questions ${quiz!.length}",
+                "Questions : ${quiz!.length}",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               Container(
-                margin: EdgeInsets.only(top: 40),
+                width: MediaQuery.of(context).size.width - 20,
+                margin: EdgeInsets.only(top: 30, left: 10),
                 child: Text(
                   "Q${_counter + 1}. ${quiz![questionIndex]["questions"]}",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 ),
               ),
               Padding(padding: EdgeInsets.only(top: 30)),
@@ -89,7 +90,7 @@ class _QuizPageState extends State<QuizPage> {
                   },
                   child: Container(
                     height: 40,
-                    width: 200,
+                    width: MediaQuery.of(context).size.width - 100,
                     child: Center(
                         child: Text(
                       "A. ${quiz![questionIndex]["options"][0]}",
@@ -109,7 +110,7 @@ class _QuizPageState extends State<QuizPage> {
                   },
                   child: Container(
                     height: 40,
-                    width: 200,
+                    width: MediaQuery.of(context).size.width - 100,
                     child: Center(
                         child: Text(
                       "B. ${quiz![questionIndex]["options"][1]}",
@@ -129,7 +130,7 @@ class _QuizPageState extends State<QuizPage> {
                   },
                   child: Container(
                     height: 40,
-                    width: 200,
+                    width: MediaQuery.of(context).size.width - 100,
                     child: Center(
                         child: Text(
                       "C. ${quiz![questionIndex]["options"][2]}",
@@ -149,7 +150,7 @@ class _QuizPageState extends State<QuizPage> {
                   },
                   child: Container(
                     height: 40,
-                    width: 200,
+                    width: MediaQuery.of(context).size.width - 100,
                     child: Center(
                         child: Text(
                       "D. ${quiz![_counter]["options"][3]}",
