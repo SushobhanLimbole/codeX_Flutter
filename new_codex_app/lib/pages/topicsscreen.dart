@@ -98,55 +98,61 @@ class _TopicsScreenState extends State<TopicsScreen> {
                 ),
                 Container(
                   height: 550,
+                  padding: EdgeInsets.only(top: 20),
                   decoration: BoxDecoration(
                       color: Color.fromRGBO(255, 255, 255, 1),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40))),
                   margin: EdgeInsets.only(top: 20),
-                  child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Center(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 20),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: Offset(2, 4),
-                                    blurRadius: 4,
-                                    color: Color.fromRGBO(0, 0, 0, 0.35))
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(55),
-                                  topLeft: Radius.circular(55))),
-                          height: 110,
-                          width: MediaQuery.of(context).size.width - 30,
-                          child: Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 10),
-                                height: 80,
-                                width: 90,
-                                decoration: BoxDecoration(
-                                    color: Colors.black54,
-                                    shape: BoxShape.circle),
+                  child: Center(
+                    child: Container(
+                      child: ListView.builder(
+                        padding: EdgeInsets.only(bottom: 50),
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Center(
+                            child: Container(
+                              margin: EdgeInsets.only(top: 20),
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: Offset(2, 4),
+                                        blurRadius: 4,
+                                        color: Color.fromRGBO(0, 0, 0, 0.35))
+                                  ],
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                      bottomLeft: Radius.circular(55),
+                                      topLeft: Radius.circular(55))),
+                              height: 110,
+                              width: MediaQuery.of(context).size.width - 30,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    height: 80,
+                                    width: 90,
+                                    decoration: BoxDecoration(
+                                        color: Colors.black54,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      'Introduction to Java',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                margin: EdgeInsets.only(left: 10),
-                                child: Text(
-                                  'Introduction to Java',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 )
               ],
