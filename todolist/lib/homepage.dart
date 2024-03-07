@@ -10,7 +10,6 @@ class ToDoHome extends StatefulWidget {
 class _ToDoHomeState extends State<ToDoHome> {
   List toDoList = [];
 
-  // int counter = 0;
   void incrementCounter() {
     toDoList.length++;
   }
