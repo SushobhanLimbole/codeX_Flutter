@@ -27,6 +27,7 @@ class _MyHomePageState extends State<HomePage> {
 
   Widget coursesCard({String? text, String? img}) {
     return InkWell(
+      // splashColor: Colors.white,
       onTap: () {
         Navigator.push(
             context,
@@ -35,7 +36,8 @@ class _MyHomePageState extends State<HomePage> {
             ));
       },
       child: Container(
-        margin: EdgeInsets.only(left: 20),
+        // margin: EdgeInsets.only(left: 20),
+        margin: EdgeInsets.only(top: 10, bottom: 10, left: 20),
         height: 180,
         width: 150,
         decoration: BoxDecoration(
@@ -82,7 +84,7 @@ class _MyHomePageState extends State<HomePage> {
       child: Center(
         child: Container(
           height: 170,
-          margin: EdgeInsets.only(bottom: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           width: MediaQuery.of(context).size.width - 40,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -221,79 +223,26 @@ class _MyHomePageState extends State<HomePage> {
           title(
               text: 'Courses For You',
               margin: EdgeInsets.only(left: 20, top: 30, bottom: 20)),
-          // ListView.builder(
-          //   itemCount: cour,
-          //   itemBuilder: (context, index) {
-
-          // },)
-
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              height: 200,
-              child: Row(
-                children: [
-                  coursesCard(
-                      text: "Java Full Stack",
-                      img: "images/java_full_stack.png"),
-                  Container(
-                    margin: EdgeInsets.only(left: 20),
-                    height: 180,
-                    width: 150,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Color.fromRGBO(244, 132, 132, 1),
-                              Color.fromRGBO(153, 4, 4, 1)
-                            ]),
-                        boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0, 4),
-                              blurRadius: 4,
-                              color: Color.fromRGBO(0, 0, 0, 0.25))
-                        ],
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                            width: 140,
-                            child: Center(
-                              child: Text(
-                                "MERN Stack",
-                                style: GoogleFonts.anekTamil(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
-                              ),
-                            )),
-                        Container(
-                          width: 140,
-                          child: Image.asset("images/mern-stack.png"),
-                        )
-                      ],
-                    ),
-                  ),
-                  coursesCard(
-                      text: "Java Full Stack",
-                      img: "images/java_full_stack.png"),
-                  coursesCard(
-                      text: "Java Full Stack",
-                      img: "images/java_full_stack.png"),
-                  coursesCard(
-                      text: "Java Full Stack",
-                      img: "images/java_full_stack.png"),
-                  SizedBox(
-                    width: 20,
-                  )
-                ],
-              ),
+          Container(
+            height: 210,
+            width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) => coursesCard(
+                  text: "Java Full Stack", img: "images/java_full_stack.png"),
+              padding: const EdgeInsets.only(right: 20),
+              scrollDirection: Axis.horizontal,
             ),
           ),
           title(text: 'Upcoming Courses'),
-          upcomingCoursesCard(),
-          upcomingCoursesCard(),
-          upcomingCoursesCard(),
+          Container(
+            height: 190,
+            child: ListView.builder(
+              itemCount: 5,
+              padding: EdgeInsets.only(bottom: 20),
+              itemBuilder: (context, index) => upcomingCoursesCard(),
+            ),
+          ),
           SizedBox(
             height: 50,
           )
