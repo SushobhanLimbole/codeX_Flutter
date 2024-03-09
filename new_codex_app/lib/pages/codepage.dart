@@ -115,7 +115,7 @@ class _TopicsScreenState extends State<CodeScreen> {
                             child: Text(
                           'Introduction to Java',
                           style: GoogleFonts.anekTamil(
-                              fontSize: 18, fontWeight: FontWeight.w500),
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ))),
                     Container(
                       height: 1,
@@ -179,7 +179,7 @@ class _TopicsScreenState extends State<CodeScreen> {
                       ),
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height - 479,
+                      height: MediaQuery.of(context).size.height - 482,
                       child: Center(
                         child: ListView.builder(
                           padding: EdgeInsets.only(bottom: 40),
