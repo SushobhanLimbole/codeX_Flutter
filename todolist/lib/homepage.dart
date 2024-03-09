@@ -9,9 +9,10 @@ class ToDoHome extends StatefulWidget {
 
 class _ToDoHomeState extends State<ToDoHome> {
   List toDoList = [];
-
-  void incrementCounter() {
+  int i = -1;
+  void increment() {
     toDoList.length++;
+    i++;
   }
 
   String show(int index) {
@@ -65,11 +66,14 @@ class _ToDoHomeState extends State<ToDoHome> {
             onTap: () {
               editToDoList(index);
             },
-            child: Container(
-              height: 50,
-              color: Colors.amber,
-              child: Text(show(index)),
-              margin: EdgeInsets.only(top: 10),
+            child: Center(
+              child: Container(
+                height: 50,
+                width: MediaQuery.of(context).size.width - 20,
+                color: Colors.amber,
+                child: Text(show(index)),
+                margin: EdgeInsets.only(top: 10),
+              ),
             ),
           );
         },
@@ -78,7 +82,8 @@ class _ToDoHomeState extends State<ToDoHome> {
         child: Icon(Icons.add),
         onPressed: () {
           setState(() {
-            incrementCounter();
+            increment();
+            editToDoList(i);
           });
         },
       ),

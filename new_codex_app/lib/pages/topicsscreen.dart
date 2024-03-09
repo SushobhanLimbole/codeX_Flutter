@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:new_codex_app/pages/codepage.dart';
 import 'package:new_codex_app/pages/homepage.dart';
 
 class TopicsScreen extends StatefulWidget {
@@ -112,41 +113,50 @@ class _TopicsScreenState extends State<TopicsScreen> {
                         itemCount: 5,
                         itemBuilder: (context, index) {
                           return Center(
-                            child: Container(
-                              margin: EdgeInsets.only(top: 20),
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        offset: Offset(2, 4),
-                                        blurRadius: 4,
-                                        color: Color.fromRGBO(0, 0, 0, 0.35))
-                                  ],
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(55),
-                                      topLeft: Radius.circular(55))),
-                              height: 110,
-                              width: MediaQuery.of(context).size.width - 30,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10),
-                                    height: 80,
-                                    width: 90,
-                                    decoration: BoxDecoration(
-                                        color: Colors.black54,
-                                        shape: BoxShape.circle),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      'Introduction to Java',
-                                      style: TextStyle(fontSize: 16),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CodeScreen(),
+                                    ));
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(top: 20),
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          offset: Offset(2, 4),
+                                          blurRadius: 4,
+                                          color: Color.fromRGBO(0, 0, 0, 0.35))
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(55),
+                                        topLeft: Radius.circular(55))),
+                                height: 110,
+                                width: MediaQuery.of(context).size.width - 30,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(left: 10),
+                                      height: 80,
+                                      width: 90,
+                                      decoration: BoxDecoration(
+                                          color: Colors.black54,
+                                          shape: BoxShape.circle),
                                     ),
-                                  )
-                                ],
+                                    Container(
+                                      margin: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        'Introduction to Java',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           );
