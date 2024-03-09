@@ -4,13 +4,18 @@ import 'package:new_codex_app/pages/codepage.dart';
 import 'package:new_codex_app/pages/homepage.dart';
 
 class TopicsScreen extends StatefulWidget {
-  TopicsScreen({super.key});
+  final List? data;
+  final String? title;
+  TopicsScreen({super.key, this.data, this.title});
 
   @override
-  State<TopicsScreen> createState() => _TopicsScreenState();
+  State<TopicsScreen> createState() => _TopicsScreenState(data, title);
 }
 
 class _TopicsScreenState extends State<TopicsScreen> {
+  List? data;
+  String? title;
+  _TopicsScreenState(this.data, this.title);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,19 +111,21 @@ class _TopicsScreenState extends State<TopicsScreen> {
                 margin: const EdgeInsets.only(top: 20),
                 child: ListView.builder(
                   padding: const EdgeInsets.only(bottom: 30),
-                  itemCount: 5,
+                  itemCount: data!.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CodeScreen(),
+                              builder: (context) => CodeScreen(
+                                  title: data![index]["topic"], data: data![index]["code"]),
                             ));
                       },
                       child: Container(
                         height: 110,
-                        margin: const EdgeInsets.only(top: 20, left: 15, right: 15),
+                        margin:
+                            const EdgeInsets.only(top: 20, left: 15, right: 15),
                         decoration: const BoxDecoration(
                             boxShadow: [
                               BoxShadow(
@@ -144,9 +151,9 @@ class _TopicsScreenState extends State<TopicsScreen> {
                             ),
                             Container(
                               margin: const EdgeInsets.only(left: 10),
-                              child: const Text(
-                                'Introduction to Java',
-                                style: TextStyle(fontSize: 16),
+                              child: Text(
+                                '${data![index]["topic"]}',
+                                style: const TextStyle(fontSize: 16),
                               ),
                             )
                           ],

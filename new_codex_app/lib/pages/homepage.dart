@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:new_codex_app/pages/topicsscreen.dart';
+import 'package:new_codex_app/data/java.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -25,14 +26,14 @@ class _MyHomePageState extends State<HomePage> {
     );
   }
 
-  Widget coursesCard({String? text, String? img}) {
+  Widget coursesCard({String? text, String? img, List? data}) {
     return InkWell(
       // splashColor: Colors.white,
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TopicsScreen(),
+              builder: (context) => TopicsScreen(data: data),
             ));
       },
       child: Container(
@@ -226,9 +227,11 @@ class _MyHomePageState extends State<HomePage> {
             height: 210,
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: courses.length,
               itemBuilder: (context, index) => coursesCard(
-                  text: "Java Full Stack", img: "images/java_full_stack.png"),
+                  text: courses[index]["course"],
+                  img: courses[index]["img"],
+                  data: courses[index]["notes"]),
               padding: const EdgeInsets.only(right: 20),
               scrollDirection: Axis.horizontal,
             ),

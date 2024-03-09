@@ -7,13 +7,19 @@ import 'package:new_codex_app/pages/topicsscreen.dart';
 // import 'package:new_codex_app/pages/homepage.dart';
 
 class CodeScreen extends StatefulWidget {
-  CodeScreen({super.key});
+  final List? data;
+  final String? title;
+  CodeScreen({super.key, this.data, this.title});
 
   @override
-  State<CodeScreen> createState() => _TopicsScreenState();
+  State<CodeScreen> createState() => _CodeScreenState(title, data);
 }
 
-class _TopicsScreenState extends State<CodeScreen> {
+class _CodeScreenState extends State<CodeScreen> {
+  List? data;
+  String? title;
+  _CodeScreenState(this.title, this.data);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +114,7 @@ class _TopicsScreenState extends State<CodeScreen> {
                         margin: const EdgeInsets.only(bottom: 10),
                         child: Center(
                             child: Text(
-                          'Introduction to Java',
+                          '$title',
                           style: GoogleFonts.anekTamil(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ))),
@@ -178,7 +184,7 @@ class _TopicsScreenState extends State<CodeScreen> {
                       child: Center(
                         child: ListView.builder(
                           padding: const EdgeInsets.only(bottom: 40),
-                          itemCount: 5,
+                          itemCount: data!.length,
                           itemBuilder: (context, index) {
                             return Container(
                               width: MediaQuery.of(context).size.width - 57,
@@ -190,7 +196,7 @@ class _TopicsScreenState extends State<CodeScreen> {
                                       const Padding(
                                           padding: EdgeInsets.only(left: 27)),
                                       Text(
-                                        'code 1:',
+                                        'code ${index + 1}:',
                                         style: GoogleFonts.anekTamil(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
@@ -198,13 +204,14 @@ class _TopicsScreenState extends State<CodeScreen> {
                                     ],
                                   ),
                                   Container(
-                                    height: 100,
+                                    // height: 100,
                                     margin: const EdgeInsets.only(top: 20),
                                     width:
                                         MediaQuery.of(context).size.width - 57,
                                     child: HighlightView(
-                                      '''''',
+                                      '${data![index]}',
                                       languageId: java.id,
+                                      padding: EdgeInsets.all(10),
                                       theme: githubDarkDimmedTheme,
                                     ),
                                   )
