@@ -186,36 +186,35 @@ class _MyHomePageState extends State<HomePage> {
               child: Center(
                 child: Row(
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
                     Container(
                       height: 70,
                       width: 90,
+                      margin: EdgeInsets.only(left: 20),
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               fit: BoxFit.fitHeight,
                               image: AssetImage("images/profile.png"))),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Hi, Shubham',
-                            style: GoogleFonts.jost(
-                              fontSize: 40,
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                            )),
-                        Text(
-                          'Hope You are Fine',
-                          style: GoogleFonts.quicksand(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: 18),
-                        ),
-                      ],
+                    Container(
+                      width: MediaQuery.of(context).size.width - 120,
+                      margin: EdgeInsets.only(left: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Hi, Shubham',
+                              style: GoogleFonts.jost(
+                                fontSize: 40,
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                              )),
+                          Text(
+                            'Hope You are Fine',
+                            style: GoogleFonts.quicksand(
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: 18),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -239,15 +238,13 @@ class _MyHomePageState extends State<HomePage> {
               margin: EdgeInsets.only(left: 20, top: 20, bottom: 10)),
           Container(
             height: 190,
+            margin: EdgeInsets.only(bottom: 30),
             child: ListView.builder(
               itemCount: 5,
               padding: const EdgeInsets.only(bottom: 20),
               itemBuilder: (context, index) => upcomingCoursesCard(),
             ),
           ),
-          const SizedBox(
-            height: 30,
-          )
         ],
       ),
     );
