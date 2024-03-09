@@ -234,7 +234,9 @@ class _MyHomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
             ),
           ),
-          title(text: 'Upcoming Courses'),
+          title(
+              text: 'Upcoming Courses',
+              margin: EdgeInsets.only(left: 20, top: 20, bottom: 10)),
           Container(
             height: 190,
             child: ListView.builder(
@@ -244,7 +246,7 @@ class _MyHomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(
-            height: 50,
+            height: 30,
           )
         ],
       ),
