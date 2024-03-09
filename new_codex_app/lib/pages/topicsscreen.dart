@@ -17,7 +17,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
       body: Container(
           height: double.infinity,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               // color: Color.fromRGBO(44, 55, 149, 0.67),
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -32,7 +32,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 40, left: 5),
+                    margin: const EdgeInsets.only(top: 40, left: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -44,41 +44,41 @@ class _TopicsScreenState extends State<TopicsScreen> {
                                   builder: (context) => HomePage(),
                                 ));
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_ios_new_sharp,
                             color: Colors.white,
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 30),
+                          margin: const EdgeInsets.only(left: 30),
                           child: Text('Java',
                               style: GoogleFonts.jost(
-                                  color: Color.fromRGBO(255, 252, 252, 1),
+                                  color: const Color.fromRGBO(255, 252, 252, 1),
                                   fontSize: 45,
                                   fontWeight: FontWeight.w500)),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 30),
+                          margin: const EdgeInsets.only(left: 30),
                           child: Text('Full Stack',
                               style: GoogleFonts.quicksand(
-                                  color: Color.fromRGBO(255, 252, 252, 1),
+                                  color: const Color.fromRGBO(255, 252, 252, 1),
                                   fontSize: 30,
                                   fontWeight: FontWeight.w600)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         )
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 70),
+                    margin: const EdgeInsets.only(top: 70),
                     height: 140,
                     width: 140,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
                             begin: Alignment.topCenter,
@@ -92,20 +92,20 @@ class _TopicsScreenState extends State<TopicsScreen> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
                 height: 535,
-                padding: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.only(top: 20),
+                decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40))),
-                margin: EdgeInsets.only(top: 20),
+                margin: const EdgeInsets.only(top: 20),
                 child: ListView.builder(
-                  padding: EdgeInsets.only(bottom: 30),
+                  padding: const EdgeInsets.only(bottom: 30),
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return InkWell(
@@ -118,8 +118,8 @@ class _TopicsScreenState extends State<TopicsScreen> {
                       },
                       child: Container(
                         height: 110,
-                        margin: EdgeInsets.only(top: 20, left: 15, right: 15),
-                        decoration: BoxDecoration(
+                        margin: const EdgeInsets.only(top: 20, left: 15, right: 15),
+                        decoration: const BoxDecoration(
                             boxShadow: [
                               BoxShadow(
                                   offset: Offset(2, 4),
@@ -135,16 +135,16 @@ class _TopicsScreenState extends State<TopicsScreen> {
                         child: Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.only(left: 10),
+                              margin: const EdgeInsets.only(left: 10),
                               height: 80,
                               width: 90,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Colors.black54,
                                   shape: BoxShape.circle),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 10),
-                              child: Text(
+                              margin: const EdgeInsets.only(left: 10),
+                              child: const Text(
                                 'Introduction to Java',
                                 style: TextStyle(fontSize: 16),
                               ),

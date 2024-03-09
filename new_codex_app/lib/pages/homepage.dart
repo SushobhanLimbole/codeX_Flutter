@@ -37,11 +37,11 @@ class _MyHomePageState extends State<HomePage> {
       },
       child: Container(
         // margin: EdgeInsets.only(left: 20),
-        margin: EdgeInsets.only(top: 10, bottom: 10, left: 20),
+        margin: const EdgeInsets.only(top: 10, bottom: 10, left: 20),
         height: 180,
         width: 150,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<HomePage> {
                   Color.fromRGBO(219, 19, 19, 0.8)
                 ]),
             boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                   offset: Offset(0, 4),
                   blurRadius: 4,
                   color: Color.fromRGBO(0, 0, 0, 0.25))
@@ -84,10 +84,10 @@ class _MyHomePageState extends State<HomePage> {
       child: Center(
         child: Container(
           height: 170,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
           width: MediaQuery.of(context).size.width - 40,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 10, left: 5),
+                            margin: const EdgeInsets.only(top: 10, left: 5),
                             child: Text(
                               '9th March 2024',
                               style: GoogleFonts.anekTamil(
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<HomePage> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 10, left: 5),
+                            margin: const EdgeInsets.only(top: 10, left: 5),
                             child: Text(
                               '10am - 12am',
                               style: GoogleFonts.anekTamil(
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<HomePage> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 50,
                       ),
                       InkWell(
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<HomePage> {
                           width: 80,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Color.fromRGBO(43, 137, 201, 1)),
+                              color: const Color.fromRGBO(43, 137, 201, 1)),
                           child: Center(
                               child: Text(
                             'Join Demo',
@@ -147,7 +147,7 @@ class _MyHomePageState extends State<HomePage> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -178,7 +178,7 @@ class _MyHomePageState extends State<HomePage> {
           Container(
               height: 250,
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromRGBO(44, 55, 149, 0.67),
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(120)),
@@ -186,18 +186,18 @@ class _MyHomePageState extends State<HomePage> {
               child: Center(
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Container(
                       height: 70,
                       width: 90,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               fit: BoxFit.fitHeight,
                               image: AssetImage("images/profile.png"))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -207,12 +207,12 @@ class _MyHomePageState extends State<HomePage> {
                         Text('Hi, Shubham',
                             style: GoogleFonts.jost(
                               fontSize: 40,
-                              color: Color.fromRGBO(255, 255, 255, 1),
+                              color: const Color.fromRGBO(255, 255, 255, 1),
                             )),
                         Text(
                           'Hope You are Fine',
                           style: GoogleFonts.quicksand(
-                              color: Color.fromRGBO(255, 255, 255, 1),
+                              color: const Color.fromRGBO(255, 255, 255, 1),
                               fontSize: 18),
                         ),
                       ],
@@ -222,7 +222,7 @@ class _MyHomePageState extends State<HomePage> {
               )),
           title(
               text: 'Courses For You',
-              margin: EdgeInsets.only(left: 20, top: 30, bottom: 20)),
+              margin: const EdgeInsets.only(left: 20, top: 30, bottom: 20)),
           Container(
             height: 210,
             width: MediaQuery.of(context).size.width,
@@ -239,11 +239,11 @@ class _MyHomePageState extends State<HomePage> {
             height: 190,
             child: ListView.builder(
               itemCount: 5,
-              padding: EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               itemBuilder: (context, index) => upcomingCoursesCard(),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           )
         ],

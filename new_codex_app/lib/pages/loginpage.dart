@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Container(
             height: 300,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromRGBO(44, 55, 149, 0.67),
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(120)),
@@ -33,19 +33,19 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 50),
+                  margin: const EdgeInsets.only(left: 50),
                   child: Text(
                     'Welcome',
                     style: GoogleFonts.jost(
-                        fontSize: 50, color: Color.fromRGBO(255, 255, 255, 1)),
+                        fontSize: 50, color: const Color.fromRGBO(255, 255, 255, 1)),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 50, top: 15),
+                  margin: const EdgeInsets.only(left: 50, top: 15),
                   child: Text(
                     'Please sign in to continue',
                     style: GoogleFonts.quicksand(
-                        color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20),
+                        color: const Color.fromRGBO(255, 255, 255, 1), fontSize: 20),
                   ),
                 ),
               ],
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
               key: _formKey,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   ),
                   Container(
@@ -69,12 +69,12 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         }
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         suffixIcon: Icon(Icons.close),
                         // suffixIconColor: Color.fromRGBO(44, 55, 149, 0.67),
-                        floatingLabelStyle:
-                            TextStyle(color: Color.fromRGBO(44, 55, 149, 0.67)),
-                        labelText: 'Mobile no. or email',
+                        // floatingLabelStyle:
+                        //     TextStyle(color: Color.fromRGBO(44, 55, 149, 0.67)),
+                        // labelText: 'Mobile no. or email',
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Color.fromRGBO(44, 55, 149, 0.67))),
@@ -98,12 +98,12 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         }
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         suffixIcon: Icon(Icons.remove_red_eye_sharp),
                         // suffixIconColor: Color.fromRGBO(44, 55, 149, 0.67),
-                        floatingLabelStyle:
-                            TextStyle(color: Color.fromRGBO(44, 55, 149, 0.67)),
-                        labelText: 'Password',
+                        // floatingLabelStyle:
+                        //     TextStyle(color: Color.fromRGBO(44, 55, 149, 0.67)),
+                        // labelText: 'Password',
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Color.fromRGBO(44, 55, 149, 0.67))),
@@ -116,15 +116,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Text(
                     'Forgot Password?',
                     style: GoogleFonts.anekTamil(
-                        color: Color.fromRGBO(142, 142, 147, 1)),
+                        color: const Color.fromRGBO(142, 142, 147, 1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   InkWell(
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                             ));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Login Failed')));
+                            const SnackBar(content: Text('Login Failed')));
                       }
                     },
                     child: Container(
@@ -146,19 +146,19 @@ class _LoginPageState extends State<LoginPage> {
                       width: MediaQuery.of(context).size.width - 80,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Color.fromRGBO(99, 113, 242, 1),
+                        color: const Color.fromRGBO(99, 113, 242, 1),
                       ),
                       child: Center(
                         child: Text(
                           'Login',
                           style: GoogleFonts.anekTamil(
                               fontSize: 15,
-                              color: Color.fromRGBO(255, 255, 255, 1)),
+                              color: const Color.fromRGBO(255, 255, 255, 1)),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Container(
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Text("Don't have an account?",
                             style: GoogleFonts.anekTamil(
-                                color: Color.fromRGBO(142, 142, 147, 1))),
+                                color: const Color.fromRGBO(142, 142, 147, 1))),
                         InkWell(
                           onTap: () {},
                           child: Text(" Sign Up",

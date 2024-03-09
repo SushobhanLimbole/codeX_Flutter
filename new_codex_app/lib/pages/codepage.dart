@@ -20,7 +20,7 @@ class _TopicsScreenState extends State<CodeScreen> {
       body: Container(
           height: double.infinity,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               // color: Color.fromRGBO(44, 55, 149, 0.67),
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -36,7 +36,7 @@ class _TopicsScreenState extends State<CodeScreen> {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width * 0.5,
-                    margin: EdgeInsets.only(top: 40, left: 5),
+                    margin: const EdgeInsets.only(top: 40, left: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -48,24 +48,24 @@ class _TopicsScreenState extends State<CodeScreen> {
                                   builder: (context) => TopicsScreen(),
                                 ));
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_ios_new_sharp,
                             color: Colors.white,
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 30),
+                          margin: const EdgeInsets.only(left: 30),
                           child: Text('Java',
                               style: GoogleFonts.jost(
-                                  color: Color.fromRGBO(255, 252, 252, 1),
+                                  color: const Color.fromRGBO(255, 252, 252, 1),
                                   fontSize: 45,
                                   fontWeight: FontWeight.w500)),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 30, bottom: 10),
+                          margin: const EdgeInsets.only(left: 30, bottom: 10),
                           child: Text('Full Stack',
                               style: GoogleFonts.quicksand(
-                                  color: Color.fromRGBO(255, 252, 252, 1),
+                                  color: const Color.fromRGBO(255, 252, 252, 1),
                                   fontSize: 30,
                                   fontWeight: FontWeight.w600)),
                         ),
@@ -73,10 +73,10 @@ class _TopicsScreenState extends State<CodeScreen> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 70, left: 10),
+                    margin: const EdgeInsets.only(top: 70, left: 10),
                     height: 140,
                     width: 140,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
                             begin: Alignment.topCenter,
@@ -90,22 +90,22 @@ class _TopicsScreenState extends State<CodeScreen> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
                 height: MediaQuery.of(context).size.height - 240,
-                padding: EdgeInsets.only(top: 12),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.only(top: 12),
+                decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40))),
-                margin: EdgeInsets.only(top: 20),
+                margin: const EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
                     Container(
-                        margin: EdgeInsets.only(bottom: 10),
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: Center(
                             child: Text(
                           'Introduction to Java',
@@ -117,15 +117,15 @@ class _TopicsScreenState extends State<CodeScreen> {
                       color: Colors.black,
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       width: MediaQuery.of(context).size.width - 30,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.circle, size: 12),
-                              SizedBox(
+                              const Icon(Icons.circle, size: 12),
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
@@ -137,19 +137,19 @@ class _TopicsScreenState extends State<CodeScreen> {
                           ),
                           Container(
                             // height: 40,
-                            margin: EdgeInsets.only(left: 17, top: 10),
-                            child: Text(
+                            margin: const EdgeInsets.only(left: 17, top: 10),
+                            child: const Text(
                               'bkd bdksd bkkdbsb bdskkb bksk bdsbds',
                               style: TextStyle(fontSize: 16),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
                             children: [
-                              Icon(Icons.circle, size: 12),
-                              SizedBox(
+                              const Icon(Icons.circle, size: 12),
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
@@ -161,13 +161,13 @@ class _TopicsScreenState extends State<CodeScreen> {
                           ),
                           Container(
                             // height: 40,
-                            margin: EdgeInsets.only(left: 17, top: 10),
-                            child: Text(
+                            margin: const EdgeInsets.only(left: 17, top: 10),
+                            child: const Text(
                               'bkd bdksd bkkdbsb bdskkb bksk bdsbds jvhjgv jjjd bddbsd dbsd ssdbs ',
                               style: TextStyle(fontSize: 16),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           )
                         ],
@@ -177,17 +177,17 @@ class _TopicsScreenState extends State<CodeScreen> {
                       height: MediaQuery.of(context).size.height - 482,
                       child: Center(
                         child: ListView.builder(
-                          padding: EdgeInsets.only(bottom: 40),
+                          padding: const EdgeInsets.only(bottom: 40),
                           itemCount: 5,
                           itemBuilder: (context, index) {
                             return Container(
                               width: MediaQuery.of(context).size.width - 57,
-                              margin: EdgeInsets.only(top: 20),
+                              margin: const EdgeInsets.only(top: 20),
                               child: Column(
                                 children: [
                                   Row(
                                     children: [
-                                      Padding(
+                                      const Padding(
                                           padding: EdgeInsets.only(left: 27)),
                                       Text(
                                         'code 1:',
@@ -199,7 +199,7 @@ class _TopicsScreenState extends State<CodeScreen> {
                                   ),
                                   Container(
                                     height: 100,
-                                    margin: EdgeInsets.only(top: 20),
+                                    margin: const EdgeInsets.only(top: 20),
                                     width:
                                         MediaQuery.of(context).size.width - 57,
                                     child: HighlightView(
