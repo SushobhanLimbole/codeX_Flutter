@@ -43,11 +43,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePage(),
-                                ));
+                            Navigator.of(context).pop();
                           },
                           icon: const Icon(
                             Icons.arrow_back_ios_new_sharp,
@@ -100,67 +96,70 @@ class _TopicsScreenState extends State<TopicsScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 535,
-                padding: const EdgeInsets.only(top: 20),
-                decoration: const BoxDecoration(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40))),
-                margin: const EdgeInsets.only(top: 20),
-                child: ListView.builder(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  itemCount: data!.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CodeScreen(
-                                  title: data![index]["topic"], data: data![index]["code"]),
-                            ));
-                      },
-                      child: Container(
-                        height: 110,
-                        margin:
-                            const EdgeInsets.only(top: 20, left: 15, right: 15),
-                        decoration: const BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  offset: Offset(2, 4),
-                                  blurRadius: 4,
-                                  color: Color.fromRGBO(0, 0, 0, 0.35))
-                            ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                                bottomLeft: Radius.circular(55),
-                                topLeft: Radius.circular(55))),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              height: 80,
-                              width: 90,
-                              decoration: const BoxDecoration(
-                                  color: Colors.black54,
-                                  shape: BoxShape.circle),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                '${data![index]["topic"]}',
-                                style: const TextStyle(fontSize: 16),
+              Expanded(
+                child: Container(
+                  // height: 535,
+                  padding: const EdgeInsets.only(top: 20),
+                  decoration: const BoxDecoration(
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40))),
+                  margin: const EdgeInsets.only(top: 20),
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 30),
+                    itemCount: data!.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CodeScreen(
+                                    title: data![index]["topic"],
+                                    data: data![index]["code"]),
+                              ));
+                        },
+                        child: Container(
+                          height: 110,
+                          margin: const EdgeInsets.only(
+                              top: 20, left: 15, right: 15),
+                          decoration: const BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    offset: Offset(2, 4),
+                                    blurRadius: 4,
+                                    color: Color.fromRGBO(0, 0, 0, 0.35))
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(55),
+                                  topLeft: Radius.circular(55))),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                height: 80,
+                                width: 90,
+                                decoration: const BoxDecoration(
+                                    color: Colors.black54,
+                                    shape: BoxShape.circle),
                               ),
-                            )
-                          ],
+                              Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  '${data![index]["topic"]}',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               )
             ],

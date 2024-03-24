@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Codex1 extends StatefulWidget {
   const Codex1({super.key});
@@ -16,25 +17,31 @@ class _Codex1State extends State<Codex1> {
         children: [
           Container(
             decoration: const BoxDecoration(
-                color: Colors.blue,
+                color: Color.fromRGBO(44, 55, 149, 0.67),
                 borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(50))),
+                    BorderRadius.only(bottomRight: Radius.circular(120))),
             height: 300,
             width: MediaQuery.of(context).size.width,
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
-                Text(
-                  'Welcome',
-                  style: TextStyle(fontSize: 40),
+                Container(
+                  margin: EdgeInsets.only(left: 50),
+                  child: Text(
+                    'Welcome',
+                    style: GoogleFonts.jost(
+                        fontSize: 50, color: Color.fromRGBO(255, 255, 255, 1)),
+                  ),
                 ),
-                Padding(padding: EdgeInsets.only(top: 20)),
-                Text(
-                  'Please sign in to continue',
-                  style: TextStyle(fontSize: 20),
-                )
+                Container(
+                  margin: EdgeInsets.only(left: 50, top: 15),
+                  child: Text(
+                    'Please sign in to continue',
+                    style: GoogleFonts.quicksand(
+                        color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20),
+                  ),
+                ),
               ],
             ),
           ),
