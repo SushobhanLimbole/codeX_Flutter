@@ -9,8 +9,7 @@ class PlayerModelClass {
   String name;
   // double runs;
 
-  PlayerModelClass(
-      {required this.jerNo, required this.name});
+  PlayerModelClass({required this.jerNo, required this.name});
 
   Map<String, dynamic> toMap() {
     return {"jerNo": jerNo, "name": name};
@@ -31,6 +30,19 @@ void main() async {
   for (var element in player) {
     print(element.name);
   }
+}
+
+Future createDb() async {
+  print('create method called');
+  WidgetsFlutterBinding.ensureInitialized();
+  database = openDatabase(
+    join(await getDatabasesPath(), "Players.db"),
+    version: 1,
+    onCreate: (db, version) async {
+      await db.execute(
+          "CREATE TABLE Player(name TEXT, jerNo INTEGER Primary key,runs REAL)");
+    },
+  );
 }
 
 Future<void> insertPlayer(PlayerModelClass player) async {

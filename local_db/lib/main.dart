@@ -5,17 +5,8 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 void main() async {
-  // createDb();
   print('main method called');
-  WidgetsFlutterBinding.ensureInitialized();
-  database = openDatabase(
-    join(await getDatabasesPath(), "Players.db"),
-    version: 1,
-    onCreate: (db, version) async {
-      await db.execute(
-          "CREATE TABLE Player(name TEXT, jerNo INTEGER Primary key,runs REAL)");
-    },
-  );
+  createDb();
   runApp(const MyApp());
 }
 
