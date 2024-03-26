@@ -122,9 +122,9 @@ class _InsertPageState extends State<InsertPage> {
                   )),
               const Padding(padding: EdgeInsets.only(top: 30)),
               ElevatedButton(
-                  style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(
-                          Size(MediaQuery.of(context).size.width - 200, 40))),
+                  // style: ButtonStyle(
+                  //     fixedSize: MaterialStateProperty.all(
+                  //         Size(MediaQuery.of(context).size.width - 200, 40))),
                   onPressed: () {
                     setState(() {
                       Navigator.push(
