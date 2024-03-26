@@ -24,10 +24,14 @@ class PlayerModelClass {
 void main() async {
   PlayerModelClass p1 = PlayerModelClass(jerNo: 12, name: "virat");
   // await insertPlayer(p);
-  // await insertPlayer(p1);
+  await insertPlayer(p1);
+  PlayerModelClass p = PlayerModelClass(jerNo: 18, name: "virat");
+  await updatePlayer(p);
   List player = await getPlayers();
-  print(player[0].toMap());
+
+  // print(player[0].toMap());
   for (var element in player) {
+    print(element.jerNo);
     print(element.name);
   }
 }
@@ -47,7 +51,7 @@ Future createDb() async {
 
 Future<void> insertPlayer(PlayerModelClass player) async {
   final localDB = await database;
-
+  print('localDb = $localDB');
   print('insert method called $player');
   await localDB.insert(
     "Player",
@@ -78,6 +82,7 @@ Future<List<PlayerModelClass>> getPlayers() async {
 }
 
 Future<void> updatePlayer(PlayerModelClass player) async {
+  print('update method called');
   final localDB = await database;
   await localDB.update(
     "Player",

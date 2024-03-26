@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:local_db/insert_page.dart';
 import 'package:local_db/local.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+// import 'package:path/path.dart';
+// import 'package:sqflite/sqflite.dart';
 
 void main() async {
   print('main method called');

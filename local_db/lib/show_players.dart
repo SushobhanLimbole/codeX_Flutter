@@ -9,6 +9,11 @@ class ShowPlayers extends StatefulWidget {
 }
 
 class _ShowPlayersState extends State<ShowPlayers> {
+  int updateJerno = 0;
+  String updatename = '';
+
+  int jersey = 0;
+  String name = '';
   List data = [];
   List tempData = [];
   fetchData() async {
@@ -18,6 +23,56 @@ class _ShowPlayersState extends State<ShowPlayers> {
       data.add(element.toMap());
     }
     setState(() {});
+  }
+
+  void update(Map index) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: MediaQuery.of(context).size.height - 150,
+          width: 200,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(children: [
+            TextFormField(
+              initialValue: '${index["name"]}',
+              decoration: const InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromRGBO(44, 55, 149, 0.67))),
+                hintText: 'Enter player name',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black45),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+              ),
+              onChanged: (value) {
+                updatename = value;
+                print(updatename);
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  updateJerno = index["jerNo"];
+                  print(updatename);
+                  print(updateJerno);
+                  PlayerModelClass p =
+                      PlayerModelClass(jerNo: updateJerno, name: updatename);
+                  index["jerNo"] = updateJerno;
+                  index["name"] = updatename;
+                  await updatePlayer(p);
+
+                  setState(() {});
+                  Navigator.pop(context);
+                },
+                child: const Text("Update"))
+          ]),
+        );
+      },
+    );
   }
 
   @override
@@ -46,16 +101,20 @@ class _ShowPlayersState extends State<ShowPlayers> {
             children: [
               Text(
                 '${data[index]["jerNo"]}',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
               Text(
                 '${data[index]["name"]}',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+              IconButton(
+                  onPressed: () {
+                    update(data[index]);
+                  },
+                  icon: const Icon(Icons.edit)),
               IconButton(
                   onPressed: () async {
-                    data.removeLast();
+                    data.removeAt(index);
                     await deletePlayer(tempData[index]);
                     setState(() {});
                   },
