@@ -23,17 +23,27 @@ class _CalendarDialogState extends State<CalendarDialog> {
     return AlertDialog(
       title: Text('Select a Date'),
       content: Container(
-        width: MediaQuery.of(context).size.width - 20,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Color.fromRGBO(208, 205, 236, 1),
         ),
         child: TableCalendar(
           headerStyle: HeaderStyle(
+            titleTextStyle: TextStyle(color: Colors.white),
+            leftChevronIcon: Icon(
+              Icons.chevron_left,
+              color: Colors.white,
+            ),
+            rightChevronIcon: Icon(
+              Icons.chevron_right,
+              color: Colors.white,
+            ),
             formatButtonVisible: false,
             headerMargin: EdgeInsets.only(bottom: 30),
-            decoration:
-                BoxDecoration(shape: BoxShape.rectangle, color: Colors.blue),
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Color.fromRGBO(13, 12, 56, 1)),
           ),
           firstDay: DateTime.utc(2010, 10, 16),
           lastDay: DateTime.utc(2030, 3, 14),

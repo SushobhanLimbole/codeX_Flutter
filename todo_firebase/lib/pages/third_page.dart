@@ -213,7 +213,7 @@ class _ThirdPageState extends State<ThirdPage> {
               child: StreamBuilder(
                 stream: _firestore.collection('metadata').snapshots(),
                 builder: (context, snapshot) {
-                  if (!snapshot.hasData) return CircularProgressIndicator();
+                  if (!snapshot.hasData) return Container(height: 50,width: MediaQuery.of(context).size.width,child: CircularProgressIndicator(),);
                   return ListView.builder(
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
