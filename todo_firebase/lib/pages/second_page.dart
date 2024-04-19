@@ -58,7 +58,7 @@ class SeecondPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ThirdPage(),
+                          builder: (context) => ThirdPage(user: user,),
                         ));
                   },
                   child: Text(

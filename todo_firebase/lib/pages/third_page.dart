@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_firebase/pages/last_page.dart';
 
 class ThirdPage extends StatefulWidget {
@@ -25,7 +26,10 @@ class _ThirdPageState extends State<ThirdPage> {
   void _updateColl(String id, String newText) async {
     await _firestore.collection('metadata').add({'collection': newText});
     await _firestore.collection('metadata').doc(id).delete();
-    await _firestore.collection('metadata').doc(id).update({'name': newText});
+    await _firestore
+        .collection('metadata')
+        .doc(id)
+        .update({'collection': newText});
     setState(() {});
   }
 
@@ -42,18 +46,28 @@ class _ThirdPageState extends State<ThirdPage> {
           title: Text('Edit Category'),
           content: TextField(
             controller: _textFieldController,
-            decoration: InputDecoration(hintText: document['collection']),
+            decoration: InputDecoration(
+              hintText: document['collection'],
+              filled: true,
+              fillColor: Color.fromRGBO(208, 205, 236, 1),
+            ),
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('CANCEL'),
+              child: Text(
+                'CANCEL',
+                style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
+              ),
               onPressed: () {
                 Navigator.pop(context);
                 _textFieldController.clear();
               },
             ),
             TextButton(
-              child: Text('SAVE'),
+              child: Text(
+                'SAVE',
+                style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
+              ),
               onPressed: () {
                 _updateColl(document.id, _textFieldController.text);
                 Navigator.pop(context);
@@ -68,18 +82,36 @@ class _ThirdPageState extends State<ThirdPage> {
 
   Widget _buildListItem(DocumentSnapshot document) {
     return InkWell(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LastPage(),)),
-      child: ListTile(
-        title: Text(document['name']),
-        trailing: Row(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LastPage(data: document['collection']),
+          )),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(12))),
+        height: 60,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Expanded(
+              child: Container(
+                  margin: EdgeInsets.only(left: 15),
+                  child: Text(
+                    document['collection'],
+                    style: GoogleFonts.jost(fontSize: 20),
+                  )),
+            ),
             IconButton(
-              icon: Icon(Icons.edit),
+              icon: Icon(Icons.edit,
+                  color: Color.fromRGBO(208, 205, 236, 1), size: 18.5),
               onPressed: () => _showEditDialog(document),
             ),
             IconButton(
-              icon: Icon(Icons.delete),
+              icon: Icon(Icons.delete_outline_outlined,
+                  color: Color.fromRGBO(208, 205, 236, 1), size: 18.5),
               onPressed: () => _deleteColl(document.id),
               // onPressed: () => _deleteData(document.id),
             ),
@@ -119,24 +151,25 @@ class _ThirdPageState extends State<ThirdPage> {
               SizedBox(height: 16.0),
               Container(
                 height: 40,
-                width: 90,
-                margin: EdgeInsets.only(
-                    top: 20, left: MediaQuery.of(context).size.width / 2.8),
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                        // fixedSize: MaterialStateProperty.all(Size(70, 40)),
-                        backgroundColor: MaterialStateProperty.all(
-                      Color.fromRGBO(208, 205, 236, 1),
-                    )),
-                    onPressed: () {
-                      _addColl(_textFieldController.text);
-                      _textFieldController.clear();
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Add',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                    )),
+                width: MediaQuery.of(context).size.width - 100,
+                margin: EdgeInsets.only(top: 20, left: 40),
+                child: Center(
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          fixedSize: MaterialStateProperty.all(Size(70, 40)),
+                          backgroundColor: MaterialStateProperty.all(
+                            Color.fromRGBO(208, 205, 236, 1),
+                          )),
+                      onPressed: () {
+                        _addColl(_textFieldController.text);
+                        _textFieldController.clear();
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Add',
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      )),
+                ),
               )
             ],
           ),
@@ -177,13 +210,6 @@ class _ThirdPageState extends State<ThirdPage> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40))),
-              // child: ListView.builder(
-              //   itemBuilder: (context, index) => Container(
-              //     color: Colors.blue,
-              //     height: 40,
-              //     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-              //   ),
-              // ),
               child: StreamBuilder(
                 stream: _firestore.collection('metadata').snapshots(),
                 builder: (context, snapshot) {
