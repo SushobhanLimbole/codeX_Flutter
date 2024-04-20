@@ -23,7 +23,30 @@ class _ThirdPageState extends State<ThirdPage> {
     setState(() {});
   }
 
-  void _updateColl(String id, String newText) async {
+  void _updateColl(String id, String newText, String oldCollection) async {
+    print('update called');
+    print('new coll = ${newText}');
+    print('old coll = ${oldCollection}');
+    final CollectionReference oldCollectionRef =
+        _firestore.collection('$oldCollection');
+    // Query all documents from the old collection
+    final QuerySnapshot querySnapshot = await oldCollectionRef.get();
+    final List<DocumentSnapshot> documents = querySnapshot.docs;
+
+    print('data = ${documents[0].data() as Map<String, dynamic>}');
+    // Copy each document to the new collection
+    for (var index = 0; index < documents.length; index++) {
+      // Add the document to the new collection
+      print('loop start');
+      await _firestore
+          .collection('$newText')
+          .add(documents[index].data() as Map<String, dynamic>);
+      print('loop mid');
+
+      await documents[index].reference.delete();
+      print('loop end');
+    }
+
     await _firestore.collection('metadata').add({'collection': newText});
     await _firestore.collection('metadata').doc(id).delete();
     await _firestore
@@ -33,8 +56,17 @@ class _ThirdPageState extends State<ThirdPage> {
     setState(() {});
   }
 
-  void _deleteColl(String id) async {
+  void _deleteColl(String id, String collection) async {
     await _firestore.collection('metadata').doc(id).delete();
+    final CollectionReference collectionReference =
+        _firestore.collection('$collection');
+
+    final QuerySnapshot querySnapshot = await collectionReference.get();
+    final List<DocumentSnapshot> documents = querySnapshot.docs;
+
+    for (DocumentSnapshot document in documents) {
+      await document.reference.delete();
+    }
     setState(() {});
   }
 
@@ -69,7 +101,8 @@ class _ThirdPageState extends State<ThirdPage> {
                 style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
               ),
               onPressed: () {
-                _updateColl(document.id, _textFieldController.text);
+                _updateColl(document.id, _textFieldController.text,
+                    document['collection']);
                 Navigator.pop(context);
                 _textFieldController.clear();
               },
@@ -112,7 +145,7 @@ class _ThirdPageState extends State<ThirdPage> {
             IconButton(
               icon: Icon(Icons.delete_outline_outlined,
                   color: Color.fromRGBO(208, 205, 236, 1), size: 18.5),
-              onPressed: () => _deleteColl(document.id),
+              onPressed: () => _deleteColl(document.id, document['collection']),
               // onPressed: () => _deleteData(document.id),
             ),
           ],
@@ -190,18 +223,25 @@ class _ThirdPageState extends State<ThirdPage> {
             margin: EdgeInsets.only(left: 30, bottom: 10, top: 80),
             child: Text(
               'Hello',
-              style: TextStyle(fontSize: 30),
+              style: GoogleFonts.pacifico(
+                  letterSpacing: 2.5,
+                  fontSize: 45,
+                  fontWeight: FontWeight.w500),
             ),
           ),
           Container(
             margin: EdgeInsets.only(left: 30, bottom: 50),
             child: Text(
               '$user',
-              style: TextStyle(fontSize: 30),
+              style: GoogleFonts.pacifico(
+                  letterSpacing: 2.5,
+                  fontSize: 45,
+                  fontWeight: FontWeight.w500),
             ),
           ),
           Expanded(
             child: Container(
+              width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.only(
                 top: 40,
               ),
@@ -213,7 +253,12 @@ class _ThirdPageState extends State<ThirdPage> {
               child: StreamBuilder(
                 stream: _firestore.collection('metadata').snapshots(),
                 builder: (context, snapshot) {
-                  if (!snapshot.hasData) return Container(height: 50,width: MediaQuery.of(context).size.width,child: CircularProgressIndicator(),);
+                  if (!snapshot.hasData)
+                    return Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      child: CircularProgressIndicator(),
+                    );
                   return ListView.builder(
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {

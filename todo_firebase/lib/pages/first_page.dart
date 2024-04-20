@@ -52,29 +52,32 @@ class FirstPage extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 70),
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(18),
-                                right: Radius.circular(18)))),
-                        backgroundColor: MaterialStateProperty.all(
-                            Color.fromRGBO(65, 201, 226, 1))),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SeecondPage(user: userController.text),
-                          ));
-                    },
-                    child: Text(
-                      'Get Started',
-                      style: GoogleFonts.asapCondensed(
-                          fontSize: 25,
-                          color: Color.fromRGBO(27, 26, 85, 0.65),
-                          fontWeight: FontWeight.w600),
-                    )),
+                width: MediaQuery.of(context).size.width - 90,
+                // margin: EdgeInsets.only(left: 70),
+                child: Center(
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.horizontal(
+                                  left: Radius.circular(18),
+                                  right: Radius.circular(18)))),
+                          backgroundColor: MaterialStateProperty.all(
+                              Color.fromRGBO(65, 201, 226, 1))),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SeecondPage(user: userController.text),
+                            ));
+                      },
+                      child: Text(
+                        'Get Started',
+                        style: GoogleFonts.asapCondensed(
+                            fontSize: 25,
+                            color: Color.fromRGBO(27, 26, 85, 0.65),
+                            fontWeight: FontWeight.w600),
+                      )),
+                ),
               )
             ],
           ),

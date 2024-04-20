@@ -112,7 +112,7 @@ class _LastPageState extends State<LastPage> {
             children: [
               Container(
                   margin: EdgeInsets.only(top: 20, left: 10, bottom: 10),
-                  child: Text('Enter Category')),
+                  child: Text('Enter Task')),
               Container(
                 margin: EdgeInsets.only(left: 10),
                 width: MediaQuery.of(context).size.width - 100,
@@ -205,7 +205,7 @@ class _LastPageState extends State<LastPage> {
             children: [
               Container(
                   margin: EdgeInsets.only(top: 60, left: 40, bottom: 10),
-                  child: Text('Enter Category')),
+                  child: Text('Enter Task')),
               Container(
                 margin: EdgeInsets.only(left: 40),
                 width: MediaQuery.of(context).size.width - 100,
