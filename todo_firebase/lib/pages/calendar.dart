@@ -21,15 +21,15 @@ class _CalendarDialogState extends State<CalendarDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Select a Date'),
+      title: const Text('Select a Date'),
       content: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Color.fromRGBO(208, 205, 236, 1),
         ),
         child: TableCalendar(
-          headerStyle: HeaderStyle(
+          headerStyle: const HeaderStyle(
             titleTextStyle: TextStyle(color: Colors.white),
             leftChevronIcon: Icon(
               Icons.chevron_left,
@@ -65,7 +65,7 @@ class _CalendarDialogState extends State<CalendarDialog> {
           onPressed: () {
             Navigator.pop(context, _selectedDay); // Pass selected date back
           },
-          child: Text('OK'),
+          child: const Text('OK'),
         ),
       ],
     );

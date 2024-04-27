@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:table_calendar/table_calendar.dart';
+// import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_firebase/Modal/Tasks.dart';
 import 'package:todo_firebase/pages/calendar.dart';
@@ -39,7 +39,7 @@ class _LastPageState extends State<LastPage> {
   Widget _buildListItem(Task task) {
     return InkWell(
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             boxShadow: [
               BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -49,13 +49,13 @@ class _LastPageState extends State<LastPage> {
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(12))),
         height: 70,
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
               child: Container(
-                margin: EdgeInsets.only(left: 15),
+                margin: const EdgeInsets.only(left: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +65,7 @@ class _LastPageState extends State<LastPage> {
                       style: GoogleFonts.jost(
                           fontWeight: FontWeight.w400,
                           fontSize: 19,
-                          color: Color.fromRGBO(147, 149, 211, 1)),
+                          color: const Color.fromRGBO(147, 149, 211, 1)),
                     ),
                     Text(task.date,
                         style: GoogleFonts.jost(
@@ -76,13 +76,13 @@ class _LastPageState extends State<LastPage> {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.edit,
-                  color: Color.fromRGBO(208, 205, 236, 1), size: 19),
+              icon: const Icon(Icons.edit,
+                  color: Color.fromRGBO(208, 205, 236, 1), size: 22),
               onPressed: () => _showEditDialog(task),
             ),
             IconButton(
-              icon: Icon(Icons.delete_outline_outlined,
-                  color: Color.fromRGBO(208, 205, 236, 1), size: 19),
+              icon: const Icon(Icons.delete_outline_outlined,
+                  color: Color.fromRGBO(208, 205, 236, 1), size: 22),
               onPressed: () async {
                 await tasksRef.doc(task.id).delete();
               },
@@ -95,7 +95,7 @@ class _LastPageState extends State<LastPage> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             )
           ],
@@ -109,32 +109,32 @@ class _LastPageState extends State<LastPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Edit Task'),
+          title: const Text('Edit Task'),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 20, left: 10, bottom: 10),
-                  child: Text('Enter Task')),
+                  margin: const EdgeInsets.only(top: 20, left: 10, bottom: 10),
+                  child: const Text('Enter Task')),
               Container(
-                margin: EdgeInsets.only(left: 10),
+                margin: const EdgeInsets.only(left: 10),
                 width: MediaQuery.of(context).size.width - 100,
                 child: TextField(
                   controller: _textFieldController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     filled: true,
                     fillColor: Color.fromRGBO(208, 205, 236, 1),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Container(
-                  margin: EdgeInsets.only(left: 10, bottom: 10),
-                  child: Text('Enter Date')),
+                  margin: const EdgeInsets.only(left: 10, bottom: 10),
+                  child: const Text('Enter Date')),
               Container(
                 height: 50,
-                margin: EdgeInsets.only(left: 10),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.only(left: 10),
+                decoration: const BoxDecoration(
                     color: Color.fromRGBO(208, 205, 236, 1),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 width: MediaQuery.of(context).size.width - 100,
@@ -155,12 +155,12 @@ class _LastPageState extends State<LastPage> {
                             chosenDate = formattedDate;
                           }
                         },
-                        icon: Icon(Icons.calendar_today)),
+                        icon: const Icon(Icons.calendar_today)),
                     Expanded(
                       child: Container(
                         // color: Colors.black,
-                        margin: EdgeInsets.only(left: 15),
-                        child: Text(
+                        margin: const EdgeInsets.only(left: 15),
+                        child: const Text(
                           '',
                         ),
                       ),
@@ -172,7 +172,7 @@ class _LastPageState extends State<LastPage> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text(
+              child: const Text(
                 'CANCEL',
                 style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
               ),
@@ -182,7 +182,7 @@ class _LastPageState extends State<LastPage> {
               },
             ),
             TextButton(
-              child: Text(
+              child: const Text(
                 'SAVE',
                 style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
               ),
@@ -201,7 +201,7 @@ class _LastPageState extends State<LastPage> {
 
   void _showBottomSheet() {
     showModalBottomSheet(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(40), topRight: Radius.circular(40))),
       context: context,
@@ -211,27 +211,27 @@ class _LastPageState extends State<LastPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 60, left: 40, bottom: 10),
-                  child: Text('Enter Task')),
+                  margin: const EdgeInsets.only(top: 60, left: 40, bottom: 10),
+                  child: const Text('Enter Task')),
               Container(
-                margin: EdgeInsets.only(left: 40),
+                margin: const EdgeInsets.only(left: 40),
                 width: MediaQuery.of(context).size.width - 100,
                 child: TextField(
                   controller: _textFieldController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     filled: true,
                     fillColor: Color.fromRGBO(208, 205, 236, 1),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Container(
-                  margin: EdgeInsets.only(left: 40, bottom: 10),
-                  child: Text('Enter Date')),
+                  margin: const EdgeInsets.only(left: 40, bottom: 10),
+                  child: const Text('Enter Date')),
               Container(
                 height: 50,
-                margin: EdgeInsets.only(left: 40),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.only(left: 40),
+                decoration: const BoxDecoration(
                     color: Color.fromRGBO(208, 205, 236, 1),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 width: MediaQuery.of(context).size.width - 100,
@@ -252,27 +252,28 @@ class _LastPageState extends State<LastPage> {
                             chosenDate = formattedDate;
                           }
                         },
-                        icon: Icon(Icons.calendar_today)),
+                        icon: const Icon(Icons.calendar_today)),
                     Expanded(
                       child: Container(
-                        margin: EdgeInsets.only(left: 15),
-                        child: Text(''),
+                        margin: const EdgeInsets.only(left: 15),
+                        child: const Text(''),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Container(
                 height: 40,
                 width: MediaQuery.of(context).size.width - 100,
-                margin: EdgeInsets.only(top: 20, left: 40),
+                margin: const EdgeInsets.only(top: 20, left: 40),
                 child: Center(
                   child: ElevatedButton(
                       style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(Size(70, 40)),
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(70, 40)),
                           backgroundColor: MaterialStateProperty.all(
-                            Color.fromRGBO(208, 205, 236, 1),
+                            const Color.fromRGBO(208, 205, 236, 1),
                           )),
                       onPressed: () async {
                         Navigator.pop(context);
@@ -283,7 +284,7 @@ class _LastPageState extends State<LastPage> {
                           'date': chosenDate, // Add the timestamp field
                         });
                       },
-                      child: Text(
+                      child: const Text(
                         'Add',
                         style: TextStyle(fontSize: 18, color: Colors.black),
                       )),
@@ -300,20 +301,20 @@ class _LastPageState extends State<LastPage> {
   Widget build(BuildContext context) {
     print('last page build method');
     return Scaffold(
-      backgroundColor: Color.fromRGBO(208, 205, 236, 1),
+      backgroundColor: const Color.fromRGBO(208, 205, 236, 1),
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(27, 26, 85, 1),
+        backgroundColor: const Color.fromRGBO(27, 26, 85, 1),
         centerTitle: true,
         title: Text(
           '$categoryName',
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white, fontWeight: FontWeight.w400, fontSize: 25),
         ),
       ),
       body: StreamBuilder(
         stream: tasksRef.where('categoryId', isEqualTo: categoryId).snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return CircularProgressIndicator();
+          if (!snapshot.hasData) return const CircularProgressIndicator();
 
           final List<Task> tasks =
               snapshot.data!.docs.map((doc) => Task.fromSnapshot(doc)).toList();
@@ -328,9 +329,9 @@ class _LastPageState extends State<LastPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromRGBO(147, 149, 211, 1),
+        backgroundColor: const Color.fromRGBO(147, 149, 211, 1),
         onPressed: () => _showBottomSheet(),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
