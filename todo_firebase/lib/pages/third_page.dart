@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_firebase/Modal/category.dart';
 import 'package:todo_firebase/pages/last_page.dart';
 
 class ThirdPage extends StatefulWidget {
@@ -14,63 +15,15 @@ class ThirdPage extends StatefulWidget {
 }
 
 class _ThirdPageState extends State<ThirdPage> {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  _ThirdPageState({this.user});
+
   final TextEditingController _textFieldController = TextEditingController();
   String? user;
 
-  void _addColl(String text) async {
-    await _firestore.collection('metadata').add({'collection': text});
-    setState(() {});
-  }
+  final CollectionReference categoriesRef =
+      FirebaseFirestore.instance.collection('categories');
 
-  void _updateColl(String id, String newText, String oldCollection) async {
-    print('update called');
-    print('new coll = ${newText}');
-    print('old coll = ${oldCollection}');
-    final CollectionReference oldCollectionRef =
-        _firestore.collection('$oldCollection');
-    // Query all documents from the old collection
-    final QuerySnapshot querySnapshot = await oldCollectionRef.get();
-    final List<DocumentSnapshot> documents = querySnapshot.docs;
-
-    print('data = ${documents[0].data() as Map<String, dynamic>}');
-    // Copy each document to the new collection
-    for (var index = 0; index < documents.length; index++) {
-      // Add the document to the new collection
-      print('loop start');
-      await _firestore
-          .collection('$newText')
-          .add(documents[index].data() as Map<String, dynamic>);
-      print('loop mid');
-
-      await documents[index].reference.delete();
-      print('loop end');
-    }
-
-    await _firestore.collection('metadata').add({'collection': newText});
-    await _firestore.collection('metadata').doc(id).delete();
-    await _firestore
-        .collection('metadata')
-        .doc(id)
-        .update({'collection': newText});
-    setState(() {});
-  }
-
-  void _deleteColl(String id, String collection) async {
-    await _firestore.collection('metadata').doc(id).delete();
-    final CollectionReference collectionReference =
-        _firestore.collection('$collection');
-
-    final QuerySnapshot querySnapshot = await collectionReference.get();
-    final List<DocumentSnapshot> documents = querySnapshot.docs;
-
-    for (DocumentSnapshot document in documents) {
-      await document.reference.delete();
-    }
-    setState(() {});
-  }
-
-  void _showEditDialog(DocumentSnapshot document) {
+  void _showEditDialog(Category category) {
     showDialog(
       context: context,
       builder: (context) {
@@ -79,7 +32,7 @@ class _ThirdPageState extends State<ThirdPage> {
           content: TextField(
             controller: _textFieldController,
             decoration: InputDecoration(
-              hintText: document['collection'],
+              hintText: category.name,
               filled: true,
               fillColor: Color.fromRGBO(208, 205, 236, 1),
             ),
@@ -100,11 +53,12 @@ class _ThirdPageState extends State<ThirdPage> {
                 'SAVE',
                 style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
               ),
-              onPressed: () {
-                _updateColl(document.id, _textFieldController.text,
-                    document['collection']);
-                Navigator.pop(context);
+              onPressed: () async {
+                await categoriesRef
+                    .doc(category.id)
+                    .update({'name': _textFieldController.text});
                 _textFieldController.clear();
+                Navigator.pop(context);
               },
             ),
           ],
@@ -113,13 +67,17 @@ class _ThirdPageState extends State<ThirdPage> {
     );
   }
 
-  Widget _buildListItem(DocumentSnapshot document) {
+  Widget _buildListItem(Category category) {
     return InkWell(
-      onTap: () => Navigator.push(
+      onTap: () {
+        Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => LastPage(data: document['collection']),
-          )),
+            builder: (context) =>
+                LastPage(categoryId: category.id, categoryName: category.name),
+          ),
+        );
+      },
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
@@ -133,28 +91,27 @@ class _ThirdPageState extends State<ThirdPage> {
               child: Container(
                   margin: EdgeInsets.only(left: 15),
                   child: Text(
-                    document['collection'],
+                    category.name,
                     style: GoogleFonts.jost(fontSize: 20),
                   )),
             ),
             IconButton(
               icon: Icon(Icons.edit,
                   color: Color.fromRGBO(208, 205, 236, 1), size: 18.5),
-              onPressed: () => _showEditDialog(document),
+              onPressed: () => _showEditDialog(category),
             ),
-            IconButton(
-              icon: Icon(Icons.delete_outline_outlined,
-                  color: Color.fromRGBO(208, 205, 236, 1), size: 18.5),
-              onPressed: () => _deleteColl(document.id, document['collection']),
-              // onPressed: () => _deleteData(document.id),
-            ),
+            IconButton(onPressed: () async {
+        await categoriesRef.doc(category.id).delete();
+      }, icon: Icon(Icons.delete_outline_outlined,
+                color: Color.fromRGBO(208, 205, 236, 1), size: 19),),
+            SizedBox(
+              width: 5,
+            )
           ],
         ),
       ),
     );
   }
-
-  _ThirdPageState({this.user});
 
   void _showBottomSheet() {
     showModalBottomSheet(
@@ -193,10 +150,17 @@ class _ThirdPageState extends State<ThirdPage> {
                           backgroundColor: MaterialStateProperty.all(
                             Color.fromRGBO(208, 205, 236, 1),
                           )),
-                      onPressed: () {
-                        _addColl(_textFieldController.text);
-                        _textFieldController.clear();
+                      onPressed: () async {
+                        String categoryName = _textFieldController.text.trim();
                         Navigator.pop(context);
+                        if (categoryName.isNotEmpty) {
+                          await categoriesRef.add({
+                            'name': categoryName,
+                            'timestamp': FieldValue
+                                .serverTimestamp(), // Add the timestamp field
+                          });
+                        }
+                        _textFieldController.clear();
                       },
                       child: Text(
                         'Add',
@@ -223,20 +187,20 @@ class _ThirdPageState extends State<ThirdPage> {
             margin: EdgeInsets.only(left: 30, bottom: 10, top: 80),
             child: Text(
               'Hello',
-              style: GoogleFonts.pacifico(
-                  letterSpacing: 2.5,
+              style: GoogleFonts.jost(
                   fontSize: 45,
-                  fontWeight: FontWeight.w500),
+                  color: Color.fromRGBO(13, 12, 56, 1),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
             margin: EdgeInsets.only(left: 30, bottom: 50),
             child: Text(
               '$user',
-              style: GoogleFonts.pacifico(
-                  letterSpacing: 2.5,
+              style: GoogleFonts.jost(
                   fontSize: 45,
-                  fontWeight: FontWeight.w500),
+                  color: Color.fromRGBO(13, 12, 56, 1),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -251,7 +215,7 @@ class _ThirdPageState extends State<ThirdPage> {
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40))),
               child: StreamBuilder(
-                stream: _firestore.collection('metadata').snapshots(),
+                stream: categoriesRef.snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData)
                     return Container(
@@ -259,10 +223,16 @@ class _ThirdPageState extends State<ThirdPage> {
                       width: MediaQuery.of(context).size.width,
                       child: CircularProgressIndicator(),
                     );
+
+                  final List<Category> categories = snapshot.data!.docs
+                      .map((doc) => Category.fromSnapshot(doc))
+                      .toList();
+
                   return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
+                    itemCount: categories.length,
                     itemBuilder: (context, index) {
-                      return _buildListItem(snapshot.data!.docs[index]);
+                      final category = categories[index];
+                      return _buildListItem(category);
                     },
                   );
                 },

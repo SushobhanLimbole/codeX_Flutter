@@ -4,21 +4,28 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_firebase/Modal/Tasks.dart';
 import 'package:todo_firebase/pages/calendar.dart';
 
 class LastPage extends StatefulWidget {
-  LastPage({super.key, this.data});
-  String? data;
+  LastPage({super.key, required this.categoryId, required this.categoryName});
+  final String categoryName;
+  final String categoryId;
   @override
-  State<LastPage> createState() => _LastPageState(data: data);
+  State<LastPage> createState() =>
+      _LastPageState(categoryId: categoryId, categoryName: categoryName);
 }
 
 class _LastPageState extends State<LastPage> {
-  String? data;
+  _LastPageState({required this.categoryId, required this.categoryName});
+
+  final String categoryName;
+  final String categoryId;
   late DateTime _selectedDay;
   late DateTime _focusedDay;
-  String chosenDate = '';
-  _LastPageState({this.data});
+  static String chosenDate = '';
+  final CollectionReference tasksRef =
+      FirebaseFirestore.instance.collection('tasks');
 
   @override
   void initState() {
@@ -28,80 +35,76 @@ class _LastPageState extends State<LastPage> {
   }
 
   final TextEditingController _textFieldController = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  void _addData(String text, String date) async {
-    await _firestore.collection('$data').add({'task': text, 'date': date});
-    setState(() {});
-  }
-
-  void _updateData(String id, String newText, String date) async {
-    await _firestore
-        .collection('$data')
-        .doc(id)
-        .update({'task': newText, 'date': date});
-    setState(() {});
-  }
-
-  void _deleteData(String id) async {
-    await _firestore.collection('$data').doc(id).delete();
-    setState(() {});
-  }
-
-  Widget _buildListItem(DocumentSnapshot document) {
-    return Container(
-      decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.25),
-                offset: Offset(0, 4),
-                blurRadius: 4)
-          ],
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(12))),
-      height: 70,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(left: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    document['task'],
-                    style: GoogleFonts.jost(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 19,
-                        color: Color.fromRGBO(147, 149, 211, 1)),
-                  ),
-                  Text(document['date'],
+  Widget _buildListItem(Task task) {
+    return InkWell(
+      child: Container(
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.25),
+                  offset: Offset(0, 4),
+                  blurRadius: 4)
+            ],
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(12))),
+        height: 70,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      task.title,
                       style: GoogleFonts.jost(
-                        fontSize: 13,
-                      ))
-                ],
+                          fontWeight: FontWeight.w400,
+                          fontSize: 19,
+                          color: Color.fromRGBO(147, 149, 211, 1)),
+                    ),
+                    Text(task.date,
+                        style: GoogleFonts.jost(
+                          fontSize: 13,
+                        ))
+                  ],
+                ),
               ),
             ),
-          ),
-          IconButton(
-            icon: Icon(Icons.edit,
-                color: Color.fromRGBO(208, 205, 236, 1), size: 19),
-            onPressed: () => _showEditDialog(document),
-          ),
-          IconButton(
-            icon: Icon(Icons.delete_outline_outlined,
-                color: Color.fromRGBO(208, 205, 236, 1), size: 19),
-            onPressed: () => _deleteData(document.id),
-          ),
-        ],
+            IconButton(
+              icon: Icon(Icons.edit,
+                  color: Color.fromRGBO(208, 205, 236, 1), size: 19),
+              onPressed: () => _showEditDialog(task),
+            ),
+            IconButton(
+              icon: Icon(Icons.delete_outline_outlined,
+                  color: Color.fromRGBO(208, 205, 236, 1), size: 19),
+              onPressed: () async {
+                await tasksRef.doc(task.id).delete();
+              },
+            ),
+            Checkbox(
+              value: task.isCompleted,
+              onChanged: (newValue) async {
+                await tasksRef.doc(task.id).update({
+                  'isCompleted': newValue,
+                });
+              },
+            ),
+            SizedBox(
+              width: 10,
+            )
+          ],
+        ),
       ),
     );
   }
 
-  void _showEditDialog(DocumentSnapshot document) {
+  void _showEditDialog(Task task) {
     showDialog(
       context: context,
       builder: (context) {
@@ -137,12 +140,6 @@ class _LastPageState extends State<LastPage> {
                 width: MediaQuery.of(context).size.width - 100,
                 child: Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(left: 15),
-                        child: Text(''),
-                      ),
-                    ),
                     IconButton(
                         onPressed: () async {
                           final DateTime? selectedDate = await showDialog(
@@ -158,7 +155,16 @@ class _LastPageState extends State<LastPage> {
                             chosenDate = formattedDate;
                           }
                         },
-                        icon: Icon(Icons.calendar_today))
+                        icon: Icon(Icons.calendar_today)),
+                    Expanded(
+                      child: Container(
+                        // color: Colors.black,
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text(
+                          '',
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -180,9 +186,10 @@ class _LastPageState extends State<LastPage> {
                 'SAVE',
                 style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
               ),
-              onPressed: () {
-                _updateData(document.id, _textFieldController.text, chosenDate);
+              onPressed: () async {
                 Navigator.pop(context);
+                await tasksRef.doc(task.id).update(
+                    {'title': _textFieldController.text, 'date': chosenDate});
                 _textFieldController.clear();
               },
             ),
@@ -230,12 +237,6 @@ class _LastPageState extends State<LastPage> {
                 width: MediaQuery.of(context).size.width - 100,
                 child: Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(left: 15),
-                        child: Text(''),
-                      ),
-                    ),
                     IconButton(
                         onPressed: () async {
                           final DateTime? selectedDate = await showDialog(
@@ -251,7 +252,13 @@ class _LastPageState extends State<LastPage> {
                             chosenDate = formattedDate;
                           }
                         },
-                        icon: Icon(Icons.calendar_today))
+                        icon: Icon(Icons.calendar_today)),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text(''),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -267,10 +274,14 @@ class _LastPageState extends State<LastPage> {
                           backgroundColor: MaterialStateProperty.all(
                             Color.fromRGBO(208, 205, 236, 1),
                           )),
-                      onPressed: () {
-                        _addData(_textFieldController.text, chosenDate);
-                        _textFieldController.clear();
+                      onPressed: () async {
                         Navigator.pop(context);
+                        await tasksRef.add({
+                          'categoryId': categoryId,
+                          'title': _textFieldController.text,
+                          'isCompleted': false,
+                          'date': chosenDate, // Add the timestamp field
+                        });
                       },
                       child: Text(
                         'Add',
@@ -294,19 +305,24 @@ class _LastPageState extends State<LastPage> {
         backgroundColor: Color.fromRGBO(27, 26, 85, 1),
         centerTitle: true,
         title: Text(
-          '$data',
+          '$categoryName',
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w400, fontSize: 25),
         ),
       ),
       body: StreamBuilder(
-        stream: _firestore.collection('$data').snapshots(),
+        stream: tasksRef.where('categoryId', isEqualTo: categoryId).snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return CircularProgressIndicator();
+
+          final List<Task> tasks =
+              snapshot.data!.docs.map((doc) => Task.fromSnapshot(doc)).toList();
+
           return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
+            itemCount: tasks.length,
             itemBuilder: (context, index) {
-              return _buildListItem(snapshot.data!.docs[index]);
+              final task = tasks[index];
+              return _buildListItem(task);
             },
           );
         },
