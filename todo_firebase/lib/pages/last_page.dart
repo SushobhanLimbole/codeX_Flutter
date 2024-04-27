@@ -301,7 +301,7 @@ class _LastPageState extends State<LastPage> {
   Widget build(BuildContext context) {
     print('last page build method');
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(208, 205, 236, 1),
+      backgroundColor: Color.fromRGBO(208, 205, 236, 1),
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(27, 26, 85, 1),
         centerTitle: true,
