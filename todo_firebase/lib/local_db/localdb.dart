@@ -23,7 +23,7 @@ Future<void> createDb() async {
   print('create method called');
   WidgetsFlutterBinding.ensureInitialized();
   database = await openDatabase(
-    join(await getDatabasesPath(), "User.db"),
+    join(await getDatabasesPath(), "Users.db"),
     version: 1,
     onCreate: (db, version) async {
       await db.execute("CREATE TABLE User(name TEXT PRIMARY KEY)");
@@ -37,7 +37,7 @@ Future<void> insertUser(UsersModelClass user) async {
   print('localDb = $localDB');
   print('insert method called $user');
   await localDB.insert(
-    "User",
+    "Users",
     user.toMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );
@@ -47,7 +47,7 @@ Future<List<UsersModelClass>> getUser() async {
   print('get method called');
   final localDB = await database;
 
-  List<Map<String, dynamic>> user = await localDB.query("User");
+  List<Map<String, dynamic>> user = await localDB.query("Users");
 
   return List.generate(user.length, (index) {
     Map map = user[index];
@@ -67,7 +67,7 @@ Future<List<UsersModelClass>> getUser() async {
 Future<void> deleteUser(String? user) async {
   final localDB = await database;
   await localDB.delete(
-    "User",
+    "Users",
     where: "name = ?",
     whereArgs: [user],
   );

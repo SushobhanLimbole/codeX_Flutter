@@ -81,28 +81,28 @@ class FirstPage extends StatelessWidget {
                                   content: Text('Please Enter the details!')));
                         } else {
                           if (querySnapshot.docs.isEmpty) {
-                            UsersModelClass userObj =
-                                UsersModelClass(name: userController.text);
-                            print('users = ${userObj.name}');
-                            await insertUser(userObj);
-                            await usersRef.add({'user': userController.text});
+                            UsersModelClass userObj = UsersModelClass(
+                                name: userController.text.trimRight());
+                            print('users ========= ${userObj.name}');
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       SeecondPage(userName: userObj.name),
                                 ));
-                          } else {
-                            UsersModelClass userObj =
-                                UsersModelClass(name: userController.text);
-                            print('users = ${userObj.name}');
                             await insertUser(userObj);
+                            await usersRef.add({'user': userObj.name});
+                          } else {
+                            UsersModelClass userObj = UsersModelClass(
+                                name: userController.text.trimRight());
+                            print('users = ${userObj.name}');
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SeecondPage(
                                       userName: userController.text),
                                 ));
+                            await insertUser(userObj);
                           }
                         }
                       },
