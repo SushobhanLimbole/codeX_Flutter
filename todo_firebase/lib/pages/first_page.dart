@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_firebase/local_db/localdb.dart';
 import 'package:todo_firebase/pages/second_page.dart';
 
 class FirstPage extends StatelessWidget {
@@ -8,6 +10,9 @@ class FirstPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CollectionReference usersRef =
+        FirebaseFirestore.instance.collection('users');
+
     print('first page build method');
     return Scaffold(
       backgroundColor: const Color.fromRGBO(13, 12, 56, 1),
@@ -57,18 +62,45 @@ class FirstPage extends StatelessWidget {
                 child: Center(
                   child: ElevatedButton(
                       style: ButtonStyle(
-                          shape: MaterialStateProperty.all(const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.horizontal(
-                                  left: Radius.circular(18),
-                                  right: Radius.circular(18)))),
+                          shape: MaterialStateProperty.all(
+                              const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.horizontal(
+                                      left: Radius.circular(18),
+                                      right: Radius.circular(18)))),
                           backgroundColor: MaterialStateProperty.all(
                               const Color.fromRGBO(65, 201, 226, 1))),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SeecondPage(user: userController.text),
-                            ));
+                      onPressed: () async {
+                        final QuerySnapshot querySnapshot = await usersRef
+                            .where("user", isEqualTo: userController.text)
+                            .get();
+
+                        if (userController.text == "" ||
+                            userController.text == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Please Enter the details!')));
+                        } else {
+                          if (querySnapshot.docs.isEmpty) {
+                            await usersRef.add({'user': userController.text});
+                            UsersModelClass userObj =
+                                UsersModelClass(name: userController.text);
+                            print('users = ${userObj.name}');
+                            await insertUser(userObj);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      SeecondPage(userName: userObj.name),
+                                ));
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SeecondPage(
+                                      userName: userController.text),
+                                ));
+                          }
+                        }
                       },
                       child: Text(
                         'Get Started',

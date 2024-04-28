@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_firebase/pages/third_page.dart';
 
 class SeecondPage extends StatelessWidget {
-  String? user;
-  SeecondPage({super.key, this.user});
+  String? userName;
+  SeecondPage({super.key, this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class SeecondPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ThirdPage(user: user,),
+                          builder: (context) => ThirdPage(userName: userName,),
                         ));
                   },
                   child: Text(

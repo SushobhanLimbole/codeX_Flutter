@@ -121,9 +121,10 @@ class _LastPageState extends State<LastPage> {
                 width: MediaQuery.of(context).size.width - 100,
                 child: TextField(
                   controller: _textFieldController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    hintText: '${task.title}',
                     filled: true,
-                    fillColor: Color.fromRGBO(208, 205, 236, 1),
+                    fillColor: const Color.fromRGBO(208, 205, 236, 1),
                   ),
                 ),
               ),
@@ -187,10 +188,14 @@ class _LastPageState extends State<LastPage> {
                 style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
               ),
               onPressed: () async {
-                Navigator.pop(context);
-                await tasksRef.doc(task.id).update(
-                    {'title': _textFieldController.text, 'date': chosenDate});
-                _textFieldController.clear();
+                if (_textFieldController.text != "") {
+                  Navigator.pop(context);
+                  await tasksRef.doc(task.id).update(
+                      {'title': _textFieldController.text, 'date': chosenDate});
+                  _textFieldController.clear();
+                } else {
+                  Navigator.pop(context);
+                }
               },
             ),
           ],
@@ -201,96 +206,114 @@ class _LastPageState extends State<LastPage> {
 
   void _showBottomSheet() {
     showModalBottomSheet(
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40), topRight: Radius.circular(40))),
       context: context,
-      builder: (context) {
-        return Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(top: 60, left: 40, bottom: 10),
-                  child: const Text('Enter Task')),
-              Container(
-                margin: const EdgeInsets.only(left: 40),
-                width: MediaQuery.of(context).size.width - 100,
-                child: TextField(
-                  controller: _textFieldController,
-                  decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Color.fromRGBO(208, 205, 236, 1),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Container(
-                  margin: const EdgeInsets.only(left: 40, bottom: 10),
-                  child: const Text('Enter Date')),
-              Container(
-                height: 50,
-                margin: const EdgeInsets.only(left: 40),
-                decoration: const BoxDecoration(
-                    color: Color.fromRGBO(208, 205, 236, 1),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                width: MediaQuery.of(context).size.width - 100,
-                child: Row(
-                  children: [
-                    IconButton(
-                        onPressed: () async {
-                          final DateTime? selectedDate = await showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return CalendarDialog();
-                            },
-                          );
-                          if (selectedDate != null) {
-                            final formattedDate =
-                                DateFormat('dd-MM-yyyy').format(selectedDate);
-                            print('Selected Date: $formattedDate');
-                            chosenDate = formattedDate;
-                          }
-                        },
-                        icon: const Icon(Icons.calendar_today)),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 15),
-                        child: const Text(''),
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40.0),
+          topRight: Radius.circular(40.0),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      margin:
+                          const EdgeInsets.only(top: 60, left: 40, bottom: 10),
+                      child: const Text('Enter Task')),
+                  Container(
+                    margin: const EdgeInsets.only(left: 40),
+                    width: MediaQuery.of(context).size.width - 100,
+                    child: TextField(
+                      controller: _textFieldController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter Task',
+                        filled: true,
+                        fillColor: Color.fromRGBO(208, 205, 236, 1),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Container(
-                height: 40,
-                width: MediaQuery.of(context).size.width - 100,
-                margin: const EdgeInsets.only(top: 20, left: 40),
-                child: Center(
-                  child: ElevatedButton(
-                      style: ButtonStyle(
-                          fixedSize:
-                              MaterialStateProperty.all(const Size(70, 40)),
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(208, 205, 236, 1),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Container(
+                      margin: const EdgeInsets.only(left: 40, bottom: 10),
+                      child: const Text('Enter Date')),
+                  Container(
+                    height: 50,
+                    margin: const EdgeInsets.only(left: 40),
+                    decoration: const BoxDecoration(
+                        color: Color.fromRGBO(208, 205, 236, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    width: MediaQuery.of(context).size.width - 100,
+                    child: Row(
+                      children: [
+                        IconButton(
+                            onPressed: () async {
+                              final DateTime? selectedDate = await showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return CalendarDialog();
+                                },
+                              );
+                              if (selectedDate != null) {
+                                final formattedDate = DateFormat('dd-MM-yyyy')
+                                    .format(selectedDate);
+                                print('Selected Date: $formattedDate');
+                                chosenDate = formattedDate;
+                              }
+                            },
+                            icon: const Icon(Icons.calendar_today)),
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 15),
+                            child: const Text(''),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width - 100,
+                    margin:
+                        const EdgeInsets.only(top: 20, left: 40, bottom: 40),
+                    child: Center(
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              fixedSize:
+                                  MaterialStateProperty.all(const Size(70, 40)),
+                              backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(208, 205, 236, 1),
+                              )),
+                          onPressed: () async {
+                            if (_textFieldController.text != "") {
+                              Navigator.pop(context);
+                              await tasksRef.add({
+                                'categoryId': categoryId,
+                                'title': _textFieldController.text,
+                                'isCompleted': false,
+                                'date': chosenDate, // Add the timestamp field
+                              });
+                            } else {
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text(
+                            'Add',
+                            style: TextStyle(fontSize: 18, color: Colors.black),
                           )),
-                      onPressed: () async {
-                        Navigator.pop(context);
-                        await tasksRef.add({
-                          'categoryId': categoryId,
-                          'title': _textFieldController.text,
-                          'isCompleted': false,
-                          'date': chosenDate, // Add the timestamp field
-                        });
-                      },
-                      child: const Text(
-                        'Add',
-                        style: TextStyle(fontSize: 18, color: Colors.black),
-                      )),
-                ),
-              )
-            ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         );
       },
@@ -301,7 +324,7 @@ class _LastPageState extends State<LastPage> {
   Widget build(BuildContext context) {
     print('last page build method');
     return Scaffold(
-      backgroundColor: Color.fromRGBO(208, 205, 236, 1),
+      backgroundColor: const Color.fromRGBO(208, 205, 236, 1),
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(27, 26, 85, 1),
         centerTitle: true,
