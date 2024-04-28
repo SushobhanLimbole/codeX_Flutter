@@ -204,13 +204,24 @@ class _ThirdPageState extends State<ThirdPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Logout"),
-          content: Text("Are you sure you want to logout?"),
+          content: Text("Are you sure you want to logout or Delete Account?"),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: Text('Cancel',style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),),
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Color.fromRGBO(13, 12, 56, 1))),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp(),));
+                await deleteUser(userName);
+              },
+              child: Text('Delete'),
             ),
             ElevatedButton(
               style: ButtonStyle(

@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print('data length ===== ${data.length}');
     if (userExists) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,

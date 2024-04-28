@@ -81,11 +81,11 @@ class FirstPage extends StatelessWidget {
                                   content: Text('Please Enter the details!')));
                         } else {
                           if (querySnapshot.docs.isEmpty) {
-                            await usersRef.add({'user': userController.text});
                             UsersModelClass userObj =
                                 UsersModelClass(name: userController.text);
                             print('users = ${userObj.name}');
                             await insertUser(userObj);
+                            await usersRef.add({'user': userController.text});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -93,6 +93,10 @@ class FirstPage extends StatelessWidget {
                                       SeecondPage(userName: userObj.name),
                                 ));
                           } else {
+                            UsersModelClass userObj =
+                                UsersModelClass(name: userController.text);
+                            print('users = ${userObj.name}');
+                            await insertUser(userObj);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
