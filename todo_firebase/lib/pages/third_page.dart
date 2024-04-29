@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_firebase/Modal/category.dart';
 import 'package:todo_firebase/local_db/localdb.dart';
 import 'package:todo_firebase/main.dart';
 import 'package:todo_firebase/pages/last_page.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ThirdPage extends StatefulWidget {
   ThirdPage({super.key, this.userName});
@@ -25,7 +24,6 @@ class _ThirdPageState extends State<ThirdPage> {
   final CollectionReference categoriesRef =
       FirebaseFirestore.instance.collection('categories');
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _showEditDialog(Category category) {
     showDialog(
@@ -72,49 +70,60 @@ class _ThirdPageState extends State<ThirdPage> {
   }
 
   Widget _buildListItem(Category category) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                LastPage(categoryId: category.id, categoryName: category.name),
+    return Slidable(
+      endActionPane: ActionPane(motion: BehindMotion(), children: [
+        Container(
+          width: 75, // Set the desired width
+          height: 75, // Set the desired height
+          child: SlidableAction(
+            onPressed: (context) => _showEditDialog(category),
+            icon: Icons.edit,
+            borderRadius: BorderRadius.circular(12),
+            backgroundColor: Color.fromRGBO(208, 205, 236, 1),
           ),
-        );
-      },
+        ),
+        Container(
+          width: 75, // Set the desired width
+          height: 75, 
+          margin: EdgeInsets.only(left: 5),
+          child: SlidableAction(
+            onPressed: (context) async {
+                  await categoriesRef.doc(category.id).delete();
+                },
+            icon: Icons.delete,
+            backgroundColor: Colors.red,
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ]),
       child: Container(
         decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(12))),
-        height: 60,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                  margin: const EdgeInsets.only(left: 15),
-                  child: Text(
-                    category.name,
-                    style: GoogleFonts.jost(fontSize: 20),
-                  )),
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        // color: Colors.white, // Set the background color of the container
+        child: ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LastPage(
+                    categoryId: category.id, categoryName: category.name),
+              ),
+            );
+          },
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Text(
+              category.name,
+              style: GoogleFonts.jost(fontSize: 22),
             ),
-            IconButton(
-              icon: const Icon(Icons.edit,
-                  color: Color.fromRGBO(208, 205, 236, 1), size: 18.5),
-              onPressed: () => _showEditDialog(category),
-            ),
-            IconButton(
-              onPressed: () async {
-                await categoriesRef.doc(category.id).delete();
-              },
-              icon: const Icon(Icons.delete_outline_outlined,
-                  color: Color.fromRGBO(208, 205, 236, 1), size: 19),
-            ),
-            const SizedBox(
-              width: 5,
-            )
-          ],
+          ),
         ),
       ),
     );
@@ -210,7 +219,10 @@ class _ThirdPageState extends State<ThirdPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel',style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),),
+              child: Text(
+                'Cancel',
+                style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
+              ),
             ),
             ElevatedButton(
               style: ButtonStyle(
@@ -218,7 +230,11 @@ class _ThirdPageState extends State<ThirdPage> {
                       MaterialStateProperty.all(Color.fromRGBO(13, 12, 56, 1))),
               onPressed: () async {
                 Navigator.of(context).pop();
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp(),));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyApp(),
+                    ));
                 await deleteUser(userName);
               },
               child: Text('Delete'),
@@ -229,7 +245,11 @@ class _ThirdPageState extends State<ThirdPage> {
                       MaterialStateProperty.all(Color.fromRGBO(13, 12, 56, 1))),
               onPressed: () async {
                 Navigator.of(context).pop();
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp(),));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyApp(),
+                    ));
                 await deleteUser(userName);
               },
               child: Text('Logout'),

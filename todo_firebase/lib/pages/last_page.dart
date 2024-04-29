@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -37,68 +38,96 @@ class _LastPageState extends State<LastPage> {
   final TextEditingController _textFieldController = TextEditingController();
 
   Widget _buildListItem(Task task) {
-    return InkWell(
-      child: Container(
-        decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.25),
-                  offset: Offset(0, 4),
-                  blurRadius: 4)
-            ],
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(12))),
-        height: 70,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(left: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      task.title,
-                      style: GoogleFonts.jost(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 19,
-                          color: const Color.fromRGBO(147, 149, 211, 1)),
-                    ),
-                    Text(task.date,
+    return Slidable(
+      endActionPane: ActionPane(motion: BehindMotion(), children: [
+        Container(
+          width: 70, // Set the desired width
+          height: 70, // Set the desired height
+          child: SlidableAction(
+            onPressed: (context) => _showEditDialog(task),
+            icon: Icons.edit,
+            borderRadius: BorderRadius.circular(12),
+            backgroundColor: Colors.white,
+
+          ),
+        ),
+        Container(
+          width: 70, // Set the desired width
+          height: 70, 
+          margin: EdgeInsets.only(left: 5),
+          child: SlidableAction(
+            onPressed: (context) async {
+                  await tasksRef.doc(task.id).delete();
+                },
+            icon: Icons.delete,
+            backgroundColor: Colors.red,
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ]),
+      child: InkWell(
+        child: Container(
+          decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    offset: Offset(0, 4),
+                    blurRadius: 4)
+              ],
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          height: 70,
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        task.title,
                         style: GoogleFonts.jost(
-                          fontSize: 13,
-                        ))
-                  ],
+                            fontWeight: FontWeight.w400,
+                            fontSize: 19,
+                            color: const Color.fromRGBO(147, 149, 211, 1)),
+                      ),
+                      Text(task.date,
+                          style: GoogleFonts.jost(
+                            fontSize: 13,
+                          ))
+                    ],
+                  ),
                 ),
               ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.edit,
-                  color: Color.fromRGBO(208, 205, 236, 1), size: 22),
-              onPressed: () => _showEditDialog(task),
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete_outline_outlined,
-                  color: Color.fromRGBO(208, 205, 236, 1), size: 22),
-              onPressed: () async {
-                await tasksRef.doc(task.id).delete();
-              },
-            ),
-            Checkbox(
-              value: task.isCompleted,
-              onChanged: (newValue) async {
-                await tasksRef.doc(task.id).update({
-                  'isCompleted': newValue,
-                });
-              },
-            ),
-            const SizedBox(
-              width: 10,
-            )
-          ],
+              // IconButton(
+              //   icon: const Icon(Icons.edit,
+              //       color: Color.fromRGBO(208, 205, 236, 1), size: 22),
+              //   onPressed: () => _showEditDialog(task),
+              // ),
+              // IconButton(
+              //   icon: const Icon(Icons.delete_outline_outlined,
+              //       color: Color.fromRGBO(208, 205, 236, 1), size: 22),
+              //   onPressed: () async {
+              //     await tasksRef.doc(task.id).delete();
+              //   },
+              // ),
+              Checkbox(
+                value: task.isCompleted,
+                onChanged: (newValue) async {
+                  await tasksRef.doc(task.id).update({
+                    'isCompleted': newValue,
+                  });
+                },
+              ),
+              // const SizedBox(
+              //   width: 2,
+              // )
+            ],
+          ),
         ),
       ),
     );
