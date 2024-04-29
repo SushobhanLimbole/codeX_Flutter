@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_firebase/Modal/category.dart';
 import 'package:todo_firebase/local_db/localdb.dart';
 import 'package:todo_firebase/main.dart';
+import 'package:todo_firebase/pages/first_page.dart';
 import 'package:todo_firebase/pages/last_page.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -20,10 +21,16 @@ class _ThirdPageState extends State<ThirdPage> {
 
   final TextEditingController _textFieldController = TextEditingController();
   String? userName;
+  List<String> taskDelete = [];
 
   final CollectionReference categoriesRef =
       FirebaseFirestore.instance.collection('categories');
 
+  final CollectionReference userRef =
+      FirebaseFirestore.instance.collection('users');
+
+  final CollectionReference tasksRef =
+      FirebaseFirestore.instance.collection('tasks');
 
   void _showEditDialog(Category category) {
     showDialog(
@@ -84,12 +91,12 @@ class _ThirdPageState extends State<ThirdPage> {
         ),
         Container(
           width: 75, // Set the desired width
-          height: 75, 
+          height: 75,
           margin: EdgeInsets.only(left: 5),
           child: SlidableAction(
             onPressed: (context) async {
-                  await categoriesRef.doc(category.id).delete();
-                },
+              await categoriesRef.doc(category.id).delete();
+            },
             icon: Icons.delete,
             backgroundColor: Colors.red,
             borderRadius: BorderRadius.circular(12),
@@ -98,9 +105,9 @@ class _ThirdPageState extends State<ThirdPage> {
       ]),
       child: Container(
         decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(12))),
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(12))),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         // color: Colors.white, // Set the background color of the container
         child: ListTile(
           onTap: () {
@@ -207,13 +214,22 @@ class _ThirdPageState extends State<ThirdPage> {
     );
   }
 
+  deleteTasks(String cate) async {
+    QuerySnapshot taskSnapshot =
+        await tasksRef.where('categoryId', isEqualTo: cate).get();
+    // Iterate through the documents and delete each one
+    taskSnapshot.docs.forEach((doc) {
+      doc.reference.delete();
+    });
+  }
+
   void _showLogoutConfirmation(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Logout"),
-          content: Text("Are you sure you want to logout or Delete Account?"),
+          content: Text("Are you sure you want to logout or Delete All data?"),
           actions: [
             TextButton(
               onPressed: () {
@@ -230,12 +246,47 @@ class _ThirdPageState extends State<ThirdPage> {
                       MaterialStateProperty.all(Color.fromRGBO(13, 12, 56, 1))),
               onPressed: () async {
                 Navigator.of(context).pop();
+                QuerySnapshot userSnapshot =
+                    await userRef.where('user', isEqualTo: userName).get();
+                // Iterate through the documents and delete each one
+                userSnapshot.docs.forEach((doc) {
+                  doc.reference.delete();
+                });
+
+                QuerySnapshot categorySnapshot = await categoriesRef
+                    .where('userName', isEqualTo: userName)
+                    .get();
+
+                // Iterate through the documents and delete each one
+                categorySnapshot.docs.forEach((doc) {
+                  taskDelete.add(doc.id);
+                  print('====== ${taskDelete}');
+                  doc.reference.delete();
+                });
+
+                for (var element in taskDelete) {
+                  print('task ======== ${element}');
+                  await deleteTasks(element);
+                }
+                await deleteUser(userName);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MyApp(),
+                      builder: (context) => FirstPage(),
                     ));
-                await deleteUser(userName);
+                // for (dynamic i = 0; i < taskDelete; i++) {
+                  
+                //   //  QuerySnapshot taskSnapshot = await tasksRef.doc(taskDelete[i]).get();
+                // }
+               
+
+                // QuerySnapshot taskSnapshot =
+                //     await tasksRef.where('userName', isEqualTo: userName).get();
+                // // Iterate through the documents and delete each one
+                // taskSnapshot.docs.forEach((doc) {
+                //   doc.reference.delete();
+                // });
+                
               },
               child: Text('Delete'),
             ),

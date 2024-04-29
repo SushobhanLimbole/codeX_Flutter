@@ -24,7 +24,7 @@ class _LastPageState extends State<LastPage> {
   final String categoryId;
   late DateTime _selectedDay;
   late DateTime _focusedDay;
-  static String chosenDate = '';
+  static String chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
   final CollectionReference tasksRef =
       FirebaseFirestore.instance.collection('tasks');
 
@@ -48,17 +48,16 @@ class _LastPageState extends State<LastPage> {
             icon: Icons.edit,
             borderRadius: BorderRadius.circular(12),
             backgroundColor: Colors.white,
-
           ),
         ),
         Container(
           width: 70, // Set the desired width
-          height: 70, 
+          height: 70,
           margin: EdgeInsets.only(left: 5),
           child: SlidableAction(
             onPressed: (context) async {
-                  await tasksRef.doc(task.id).delete();
-                },
+              await tasksRef.doc(task.id).delete();
+            },
             icon: Icons.delete,
             backgroundColor: Colors.red,
             borderRadius: BorderRadius.circular(12),
@@ -137,97 +136,115 @@ class _LastPageState extends State<LastPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: const Text('Edit Task'),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(top: 20, left: 10, bottom: 10),
-                  child: const Text('Enter Task')),
-              Container(
-                margin: const EdgeInsets.only(left: 10),
-                width: MediaQuery.of(context).size.width - 100,
-                child: TextField(
-                  controller: _textFieldController,
-                  decoration: InputDecoration(
-                    hintText: '${task.title}',
-                    filled: true,
-                    fillColor: const Color.fromRGBO(208, 205, 236, 1),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Edit Task'),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin:
+                        const EdgeInsets.only(top: 20, left: 10, bottom: 10),
+                    child: const Text('Enter Task'),
                   ),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Container(
-                  margin: const EdgeInsets.only(left: 10, bottom: 10),
-                  child: const Text('Enter Date')),
-              Container(
-                height: 50,
-                margin: const EdgeInsets.only(left: 10),
-                decoration: const BoxDecoration(
-                    color: Color.fromRGBO(208, 205, 236, 1),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                width: MediaQuery.of(context).size.width - 100,
-                child: Row(
-                  children: [
-                    IconButton(
-                        onPressed: () async {
-                          final DateTime? selectedDate = await showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return CalendarDialog();
-                            },
-                          );
-                          if (selectedDate != null) {
-                            final formattedDate =
-                                DateFormat('dd-MM-yyyy').format(selectedDate);
-                            print('Selected Date: $formattedDate');
-                            chosenDate = formattedDate;
-                          }
-                        },
-                        icon: const Icon(Icons.calendar_today)),
-                    Expanded(
-                      child: Container(
-                        // color: Colors.black,
-                        margin: const EdgeInsets.only(left: 15),
-                        child: const Text(
-                          '',
-                        ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    width: MediaQuery.of(context).size.width - 100,
+                    child: TextField(
+                      controller: _textFieldController,
+                      decoration: InputDecoration(
+                        hintText: '${task.title}',
+                        filled: true,
+                        fillColor: const Color.fromRGBO(208, 205, 236, 1),
                       ),
                     ),
-                  ],
+                  ),
+                  const SizedBox(height: 16.0),
+                  Container(
+                    margin: const EdgeInsets.only(left: 10, bottom: 10),
+                    child: const Text('Enter Date'),
+                  ),
+                  Container(
+                    height: 50,
+                    margin: const EdgeInsets.only(left: 10),
+                    decoration: const BoxDecoration(
+                      color: Color.fromRGBO(208, 205, 236, 1),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                    width: MediaQuery.of(context).size.width - 100,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () async {
+                            final DateTime? selectedDate = await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return CalendarDialog();
+                              },
+                            );
+                            if (selectedDate != null) {
+                              final formattedDate =
+                                  DateFormat('dd-MM-yyyy').format(selectedDate);
+                              print('Selected Date: $formattedDate');
+                              setState(() {
+                                chosenDate = formattedDate;
+                              });
+                            }
+                          },
+                          icon: const Icon(Icons.calendar_today),
+                        ),
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 15),
+                            child: Text(
+                              chosenDate.isNotEmpty
+                                  ? chosenDate
+                                  : '${DateFormat('dd-MM-yyyy').format(DateTime.now())}',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text(
+                    'CANCEL',
+                    style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _textFieldController.clear();
+                    chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                  },
                 ),
-              ),
-            ],
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text(
-                'CANCEL',
-                style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-                _textFieldController.clear();
-              },
-            ),
-            TextButton(
-              child: const Text(
-                'SAVE',
-                style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
-              ),
-              onPressed: () async {
-                if (_textFieldController.text != "") {
-                  Navigator.pop(context);
-                  await tasksRef.doc(task.id).update(
-                      {'title': _textFieldController.text, 'date': chosenDate});
-                  _textFieldController.clear();
-                } else {
-                  Navigator.pop(context);
-                }
-              },
-            ),
-          ],
+                TextButton(
+                  child: const Text(
+                    'SAVE',
+                    style: TextStyle(color: Color.fromRGBO(13, 12, 56, 1)),
+                  ),
+                  onPressed: () async {
+                    if (_textFieldController.text.isNotEmpty) {
+                      Navigator.pop(context);
+                      await tasksRef.doc(task.id).update({
+                        'title': _textFieldController.text,
+                        'date': chosenDate,
+                      });
+                      _textFieldController.clear();
+                      chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                    } else {
+                      Navigator.pop(context);
+                      chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                    }
+                  },
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -254,9 +271,10 @@ class _LastPageState extends State<LastPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      margin:
-                          const EdgeInsets.only(top: 60, left: 40, bottom: 10),
-                      child: const Text('Enter Task')),
+                    margin:
+                        const EdgeInsets.only(top: 60, left: 40, bottom: 10),
+                    child: const Text('Enter Task'),
+                  ),
                   Container(
                     margin: const EdgeInsets.only(left: 40),
                     width: MediaQuery.of(context).size.width - 100,
@@ -271,37 +289,47 @@ class _LastPageState extends State<LastPage> {
                   ),
                   const SizedBox(height: 16.0),
                   Container(
-                      margin: const EdgeInsets.only(left: 40, bottom: 10),
-                      child: const Text('Enter Date')),
+                    margin: const EdgeInsets.only(left: 40, bottom: 10),
+                    child: const Text('Enter Date'),
+                  ),
                   Container(
                     height: 50,
                     margin: const EdgeInsets.only(left: 40),
                     decoration: const BoxDecoration(
-                        color: Color.fromRGBO(208, 205, 236, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                      color: Color.fromRGBO(208, 205, 236, 1),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
                     width: MediaQuery.of(context).size.width - 100,
                     child: Row(
                       children: [
                         IconButton(
-                            onPressed: () async {
-                              final DateTime? selectedDate = await showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return CalendarDialog();
-                                },
-                              );
-                              if (selectedDate != null) {
-                                final formattedDate = DateFormat('dd-MM-yyyy')
-                                    .format(selectedDate);
-                                print('Selected Date: $formattedDate');
+                          onPressed: () async {
+                            final DateTime? selectedDate = await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return CalendarDialog();
+                              },
+                            );
+                            if (selectedDate != null) {
+                              final formattedDate =
+                                  DateFormat('dd-MM-yyyy').format(selectedDate);
+                              print('Selected Date: $formattedDate');
+                              setState(() {
                                 chosenDate = formattedDate;
-                              }
-                            },
-                            icon: const Icon(Icons.calendar_today)),
+                              });
+                            }
+                          },
+                          icon: const Icon(Icons.calendar_today),
+                        ),
                         Expanded(
                           child: Container(
                             margin: const EdgeInsets.only(left: 15),
-                            child: const Text(''),
+                            child: Text(
+                              chosenDate.isNotEmpty
+                                  ? chosenDate
+                                  : '${DateFormat('dd-MM-yyyy').format(DateTime.now())}',
+                              style: TextStyle(fontSize: 16),
+                            ),
                           ),
                         ),
                       ],
@@ -315,31 +343,36 @@ class _LastPageState extends State<LastPage> {
                         const EdgeInsets.only(top: 20, left: 40, bottom: 40),
                     child: Center(
                       child: ElevatedButton(
-                          style: ButtonStyle(
-                              fixedSize:
-                                  MaterialStateProperty.all(const Size(70, 40)),
-                              backgroundColor: MaterialStateProperty.all(
-                                const Color.fromRGBO(208, 205, 236, 1),
-                              )),
-                          onPressed: () async {
-                            if (_textFieldController.text != "") {
-                              Navigator.pop(context);
-                              await tasksRef.add({
-                                'categoryId': categoryId,
-                                'title': _textFieldController.text,
-                                'isCompleted': false,
-                                'date': chosenDate, // Add the timestamp field
-                              });
-                            } else {
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: const Text(
-                            'Add',
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          )),
+                        style: ButtonStyle(
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(70, 40)),
+                          backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(208, 205, 236, 1),
+                          ),
+                        ),
+                        onPressed: () async {
+                          if (_textFieldController.text.isNotEmpty) {
+                            Navigator.pop(context);
+                            await tasksRef.add({
+                              'categoryId': categoryId,
+                              'title': _textFieldController.text,
+                              'isCompleted': false,
+                              'date': chosenDate, // Add the timestamp field
+                            });
+                            _textFieldController.clear();
+                            chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                          } else {
+                            Navigator.pop(context);
+                            chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                          }
+                        },
+                        child: const Text(
+                          'Add',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
