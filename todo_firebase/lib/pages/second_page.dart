@@ -18,8 +18,8 @@ class SeecondPage extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 50, top: 40),
-              height: MediaQuery.of(context).size.height - 580,
-              width: MediaQuery.of(context).size.width - 150,
+              height: MediaQuery.of(context).size.height / 4,
+              width: MediaQuery.of(context).size.width / 2.1,
               child: Image.asset(
                 'assests/second_page.png',
                 fit: BoxFit.cover,

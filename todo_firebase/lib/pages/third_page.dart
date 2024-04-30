@@ -95,6 +95,7 @@ class _ThirdPageState extends State<ThirdPage> {
           margin: EdgeInsets.only(left: 5),
           child: SlidableAction(
             onPressed: (context) async {
+              await deleteTasks(category.id);
               await categoriesRef.doc(category.id).delete();
             },
             icon: Icons.delete,
@@ -108,7 +109,6 @@ class _ThirdPageState extends State<ThirdPage> {
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(12))),
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        // color: Colors.white, // Set the background color of the container
         child: ListTile(
           onTap: () {
             Navigator.push(
@@ -274,19 +274,6 @@ class _ThirdPageState extends State<ThirdPage> {
                     MaterialPageRoute(
                       builder: (context) => FirstPage(),
                     ));
-                // for (dynamic i = 0; i < taskDelete; i++) {
-                  
-                //   //  QuerySnapshot taskSnapshot = await tasksRef.doc(taskDelete[i]).get();
-                // }
-               
-
-                // QuerySnapshot taskSnapshot =
-                //     await tasksRef.where('userName', isEqualTo: userName).get();
-                // // Iterate through the documents and delete each one
-                // taskSnapshot.docs.forEach((doc) {
-                //   doc.reference.delete();
-                // });
-                
               },
               child: Text('Delete'),
             ),
@@ -390,27 +377,6 @@ class _ThirdPageState extends State<ThirdPage> {
             ),
           )
         ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: Text('Logout'),
-              onTap: () {
-                // Implement logout functionality here
-                // For example, you can navigate to the login page
-                Navigator.pop(context); // Close the drawer
-              },
-            ),
-          ],
-        ),
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () => _showBottomSheet(),

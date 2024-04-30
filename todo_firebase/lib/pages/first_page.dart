@@ -33,8 +33,8 @@ class FirstPage extends StatelessWidget {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height - 620,
-                width: MediaQuery.of(context).size.width - 170,
+                height: MediaQuery.of(context).size.height / 4.5,
+                width: MediaQuery.of(context).size.width / 2,
                 margin: const EdgeInsets.only(bottom: 110, left: 40),
                 child: Image.asset('assests/first_page.png', fit: BoxFit.cover),
               ),

@@ -102,18 +102,6 @@ class _LastPageState extends State<LastPage> {
                   ),
                 ),
               ),
-              // IconButton(
-              //   icon: const Icon(Icons.edit,
-              //       color: Color.fromRGBO(208, 205, 236, 1), size: 22),
-              //   onPressed: () => _showEditDialog(task),
-              // ),
-              // IconButton(
-              //   icon: const Icon(Icons.delete_outline_outlined,
-              //       color: Color.fromRGBO(208, 205, 236, 1), size: 22),
-              //   onPressed: () async {
-              //     await tasksRef.doc(task.id).delete();
-              //   },
-              // ),
               Checkbox(
                 value: task.isCompleted,
                 onChanged: (newValue) async {
@@ -122,9 +110,6 @@ class _LastPageState extends State<LastPage> {
                   });
                 },
               ),
-              // const SizedBox(
-              //   width: 2,
-              // )
             ],
           ),
         ),
@@ -219,7 +204,8 @@ class _LastPageState extends State<LastPage> {
                   onPressed: () {
                     Navigator.pop(context);
                     _textFieldController.clear();
-                    chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                    chosenDate =
+                        DateFormat('dd-MM-yyyy').format(DateTime.now());
                   },
                 ),
                 TextButton(
@@ -235,10 +221,12 @@ class _LastPageState extends State<LastPage> {
                         'date': chosenDate,
                       });
                       _textFieldController.clear();
-                      chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                      chosenDate =
+                          DateFormat('dd-MM-yyyy').format(DateTime.now());
                     } else {
                       Navigator.pop(context);
-                      chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                      chosenDate =
+                          DateFormat('dd-MM-yyyy').format(DateTime.now());
                     }
                   },
                 ),
@@ -360,10 +348,12 @@ class _LastPageState extends State<LastPage> {
                               'date': chosenDate, // Add the timestamp field
                             });
                             _textFieldController.clear();
-                            chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                            chosenDate =
+                                DateFormat('dd-MM-yyyy').format(DateTime.now());
                           } else {
                             Navigator.pop(context);
-                            chosenDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+                            chosenDate =
+                                DateFormat('dd-MM-yyyy').format(DateTime.now());
                           }
                         },
                         child: const Text(
