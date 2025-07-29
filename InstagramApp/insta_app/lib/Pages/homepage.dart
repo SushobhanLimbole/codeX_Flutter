@@ -413,8 +413,12 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
+                    Expanded(
+                        child: Container(
+                      height: 1,
+                    )),
                     Container(
-                      width: MediaQuery.of(context).size.width - 175,
+                      // width: MediaQuery.of(context).size.width - 175,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -633,7 +637,11 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 176)),
+                    // Padding(padding: EdgeInsets.only(left: 176)),
+                    Expanded(
+                        child: Container(
+                      height: 1,
+                    )),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -824,7 +832,11 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 162)),
+                    // Padding(padding: EdgeInsets.only(left: 162)),
+                    Expanded(
+                        child: Container(
+                      height: 1,
+                    )),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -1012,7 +1024,11 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 230)),
+                    // Padding(padding: EdgeInsets.only(left: 230)),
+                    Expanded(
+                        child: Container(
+                      height: 1,
+                    )),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,
@@ -1182,7 +1198,11 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 161)),
+                    // Padding(padding: EdgeInsets.only(left: 161)),
+                    Expanded(
+                        child: Container(
+                      height: 1,
+                    )),
                     Icon(
                       Icons.more_vert_sharp,
                       color: Colors.white,

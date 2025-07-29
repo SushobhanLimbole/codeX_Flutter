@@ -67,6 +67,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     .doc(category.id)
                     .update({'name': _textFieldController.text});
                 _textFieldController.clear();
+
                 Navigator.pop(context);
               },
             ),

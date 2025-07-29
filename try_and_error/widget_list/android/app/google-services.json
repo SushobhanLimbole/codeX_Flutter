@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "881315275998",
+    "project_id": "voguevault-ab740",
+    "storage_bucket": "voguevault-ab740.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881315275998:android:93f7145f49e2dda4c94e4f",
+        "android_client_info": {
+          "package_name": "com.example.vogue_vault"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJOTwqDdZntMNlb4KBU4IO9-9DJpnG53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881315275998:android:60b26279c127060dc94e4f",
+        "android_client_info": {
+          "package_name": "com.example.widget_list"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJOTwqDdZntMNlb4KBU4IO9-9DJpnG53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
